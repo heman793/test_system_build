@@ -11,12 +11,13 @@ calendar = CalendarUtil()
 
 project_path = '/home/trader/Autotest/Auto_Test'
 test_data_path = os.path.join(project_path, 'test_data')
-report_path = os.path.join(project_path, 'report')
+report_path = '/home/trader/Autotest/Auto_Test/report'
 test_case_path = os.path.join(project_path, 'test_case')
+cta_test_case_path = os.path.join(project_path, )
 socket_connect_dict = 'tcp://172.16.12.88:17103'
 
 # windows setting
-windows_ip = '172.16.20.180'
+windows_ip = '172.16.11.180'
 windows_port = 8888
 
 # Sql Information Setting
@@ -41,7 +42,8 @@ src_volume_profile_path = '/data/daily/stock/volume_profile'
 parameter_dict_filepath_default = '/dailyjob/StockIntraday/parameter_dict_20170816.csv'
 
 # AutoTest Platform Basic Config
-user_path = '/home/%s' % getpass.getuser()
+#user_path = '/home/%s' % getpass.getuser()
+user_path = '/home/trader'
 
 # critical path setting: project_path
 project_path = os.path.join(user_path, 'Autotest/Auto_Test')
@@ -55,8 +57,10 @@ version_path = os.path.join(project_path, 'TestType')
 test_log_path = os.path.join(project_path, 'log')
 test_data_path = os.path.join(project_path, 'data')
 future_quote_data_path = os.path.join(platform_path, 'quote')
+future_strategy_para_path = os.path.join(version_path, 'future_Config')
+strategyloader_file_path = '/home/trader/apps/TradePlat/cfg'
 # DataBase Setting
-algo_fund = 'steady_return'
+fund_name = 'steady_return'
 stock_account = '109178005300-PROXY-steady_return-'
 future_account = '030730-CTP-steady_return-'
 strategy = 'default'
@@ -76,7 +80,6 @@ control_port_num = 17103  # no need to update
 # parameter_dict.csv
 #strategy_chosen : StkIntraday,CTA,All
 strategy_chosen = 'All'
-strategy_config_path = os.path.join(version_path, '%s_Config' % strategy_chosen)
 file_log_name = '%s_create_file_list.log' % strategy_chosen
 platform_log_name = '%s_platform_msg.log' % strategy_chosen
 component_log_name = '%s_component.log' % strategy_chosen

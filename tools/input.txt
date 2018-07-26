@@ -1,0 +1,11 @@
+[version]
+libatp=(a0b5b3d0f6a26592849f345437700d9bf172c80e)
+
+[version]
+libatp.ctp=(60b97411bdf41ccbb278fc530d0369520bc20de7)
+
+[version]
+trade_proxy=(7c62fdbbca7d0ff9f32c0d339f1f16d45150ca8a)
+
+[version]
+libatp.mktdt=(eb8af5231933292e4e27e83c1a37c0ae03774fd9)

@@ -8,7 +8,7 @@ from tools.getConfig import getConfig
 from model.instrument import Instrument
 from tools.file_utils import FileUtils
 from model.eod_parse_arguments import parse_arguments
-from public.main_config import platform_logger, get_log_format_string
+# from public.main_config import platform_logger, get_log_format_string
 
 now = datetime.now()
 validate_time = long(now.strftime('%H%M%S'))
@@ -49,11 +49,13 @@ def read_price_file_ctp(ctp_file_path):
         'MinLimitOrderVolume', 'LongMarginRatio', 'ShortMarginRatio'
     ]
 
-    platform_logger.debug('update_instrument_info, update record num: %d; fields: %s' %
-                          (len(instrument_array), field_list))
+    # platform_logger.debug('update_instrument_info, update record num: %d; fields: %s' %
+    #                       (len(instrument_array), field_list))
+    print ('update_instrument_info, update record num: %d; fields: %s') % (len(instrument_array), field_list)
     update_instrument_info(instrument_array)
 
-    platform_logger.debug('update market_info, update record num: %d' % (len(market_array)))
+    # platform_logger.debug('update market_info, update record num: %d' % (len(market_array)))
+    print ('update market_info, update record num: %d') % len(market_array)
     update_market_info(market_array)  # 根据md行情数据更新prev_close
 
 
@@ -110,10 +112,12 @@ def update_market_info(message_array):
 
     if after_trade_time:
         fields = ['ClosePrice', 'Volume']
-        platform_logger.debug('update %s' % fields)
+        # platform_logger.debug('update %s' % fields)
+        print ('update %s') % fields
     else:
         fields = ['PreClosePrice', 'PreSettlementPrice', 'UpperLimitPrice', 'LowerLimitPrice']
-        platform_logger.debug('update %s' % fields)
+        # platform_logger.debug('update %s' % fields)
+        print ('update %s') % fields
 
     for message_info in message_array:
         ticker = getattr(message_info, 'InstrumentID', '')
@@ -194,10 +198,12 @@ def update_db():
 
 def ctp_price_analysis(date):
 
-    platform_logger.info(get_log_format_string('Enter ctp_price_analysis', tag='='))
+    # platform_logger.info(get_log_format_string('Enter ctp_price_analysis', tag='='))
+    print ('Enter ctp_price_analysis')
     host_server_model = ServerConstant().get_server_model('host')
     global session
     global filter_date_str
+
     date_ = '-'.join([date[:4], date[4:6], date[6:8]])
     session = host_server_model.get_db_session('common')
     if date is None or date == '':
@@ -205,30 +211,34 @@ def ctp_price_analysis(date):
     else:
         filter_date_str = date_
 
-    build_instrument_db_dict()
+
     data_path = os.path.join(file_path, date)
     instrument_file_list = FileUtils(data_path).filter_file('CTP_INSTRUMENT', filter_date_str)
-    market_file_list = FileUtils(data_path).filter_file('CTP_MARKET', filter_date_str)
-
+    print instrument_file_list
+    market_file_list = FileUtils(data_path).filter_file('CTP_MARKET',
+                                                         filter_date_str)
     ctp_file_list = []
     ctp_file_list.extend(instrument_file_list)
     ctp_file_list.extend(market_file_list)
-    platform_logger.info('src_file_path: %s' % data_path)
-    platform_logger.info('target_file_list: %s' % ctp_file_list)
+    # platform_logger.info('src_file_path: %s' % data_path)
+    print ('src_file_path: %s')% data_path
+    # platform_logger.info('target_file_list: %s')% ctp_file_list
+    print ('target_file_list: %s') % ctp_file_list
 
     for ctp_file in ctp_file_list:
-        platform_logger.info(get_log_format_string('start: %s' % ctp_file, tag='-'))
+        # platform_logger.info(get_log_format_string('start: %s' % ctp_file, tag='-'))
+        print ('start: %s')% ctp_file
         read_price_file_ctp(os.path.join(data_path, ctp_file))
 
     set_main_submain()
     update_db()
     session.commit()
-    platform_logger.info(get_log_format_string('Exit ctp_price_analysis', tag='='))
-
+    # platform_logger.info(get_log_format_string('Exit ctp_price_analysis', tag='='))
+    print ('Exit ctp_price_analysis')
 
 if __name__ == '__main__':
     options = parse_arguments()
     date_str = options.date
-    day = '20170725'
+    day = '20180713'
     ctp_price_analysis(day)
 

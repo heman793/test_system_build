@@ -86,7 +86,8 @@ class ServerModel:
                     print item
 
                 if len(cmd_result) > 0:
-                    error_message = '[ERROR]%s:IP:%s, CMD:%s Ruturn Error:%s!' % (datetime.now().strftime('%Y-%m-%d %H:%M:%S'), self.ip, m , '\n'.join(cmd_result))
+                    error_message = '[ERROR]%s:IP:%s, CMD:%s Return ' \
+                                    'Error:%s!' % (datetime.now().strftime('%Y-%m-%d %H:%M:%S'), self.ip, m , '\n'.join(cmd_result))
                     if 'Traceback' in error_message:
                         EmailUtils(EmailUtils.group2).send_email_group_all('[ERROR]Server:%s Cmd Run!' % self.name, error_message)
 
@@ -119,7 +120,8 @@ class ServerModel:
                     print item
 
                 if len(cmd_result) > 0:
-                    error_message = '[ERROR]%s:IP:%s, CMD:%s Ruturn Error:%s!' % (datetime.now().strftime('%Y-%m-%d %H:%M:%S'), self.ip, m , '\n'.join(cmd_result))
+                    error_message = '[ERROR]%s:IP:%s, CMD:%s Return ' \
+                                    'Error:%s!' % (datetime.now().strftime('%Y-%m-%d %H:%M:%S'), self.ip, m , '\n'.join(cmd_result))
                     if 'Traceback' in error_message:
                         EmailUtils(EmailUtils.group2).send_email_group_all('[ERROR]Server:%s Cmd Run!' % self.name, error_message)
 

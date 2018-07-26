@@ -1,0 +1,685 @@
+package proto;
+import "bcl.proto"; // schema for protobuf-net's handling of core .NET types
+
+message AlgoParameter {
+   optional int32 AlgoNameWired = 1 [default = 0];
+   optional TradeDirectionID TradeSide = 2;
+   optional bcl.DateTime StartTime = 3;
+   optional bcl.DateTime EndTime = 4;
+   optional bool AllowPastEndTime = 5;
+   optional double ParticipationRate = 6;
+   optional int32 Interval = 7;
+   optional int32 Interval2 = 8;
+   optional bool IsShortSell = 9;
+   optional bool IsMarketMaking = 10;
+   optional double RoundLotPoint = 11;
+   optional bool IsShortSellFirst = 12;
+   optional QuoteLevelID PeggedLevel = 13;
+   optional bool UseLeastCommonLotSize = 14;
+   optional bool WaitCompletionRateSyncWhenCancel = 15;
+   optional ExecutionStyle Style = 16;
+   optional int32 MaxRetryCount = 17;
+   optional double StopLossPrice = 18;
+   optional double StopProfitPrice = 19;
+   optional TradeTypeID FirstTradeType = 20;
+   optional bool IsETFArb = 21;
+   optional double SellAbove = 22;
+   optional double BuyBelow = 23;
+   optional string PriceParameter = 24;
+   optional double CompletionRate = 25;
+   optional ValidateLeg2TimeID ValidateLeg2Time = 26;
+   optional OperateChildOrderTimeID OperateChildOrderTime = 27;
+}
+message AllProtoMsg {
+   optional MarketDataSubscribeMsg m0 = 1;
+   optional MarketDataResponseMsg m1 = 2;
+   optional InstrumentInfoRequestMsg m2 = 3;
+   optional InstrumentInfoResponseMsg m3 = 4;
+   optional NewOrderMsg m4 = 5;
+   optional CancelOrderMsg m5 = 6;
+   optional ReplaceOrderMsg m6 = 7;
+   optional OrderInfoRequestMsg m7 = 8;
+   optional OrderInfoResponseMsg m8 = 9;
+   optional OrderStatusSubscribeMsg m9 = 10;
+   optional OrderStatusResponseMsg m10 = 11;
+   optional ServerInfoRequestMsg m11 = 12;
+   optional ServerInfoResponseMsg m12 = 13;
+   optional ServerParameterChangeRequestMsg m13 = 14;
+   optional StrategyInfoRequestMsg m14 = 15;
+   optional StrategyInfoResponseMsg m15 = 16;
+   optional StrategyParameterChangeRequestMsg m16 = 17;
+   optional TradeInfoRequestMsg m17 = 18;
+   optional TradeInfoResponseMsg m18 = 19;
+   optional PositionRiskRequestMsg m19 = 20;
+   optional PositionRiskResponseMsg m20 = 21;
+   optional StrategyStateChangeRequestMsg m21 = 22;
+   optional ClearAbnormalStateMsg m22 = 23;
+   optional StrategyPositionChangeRequestMsg m23 = 24;
+   optional PhoneTradeRequestMsg m25 = 25;
+   optional MaxMsg m32 = 32;
+}
+message AnalyserState {
+   optional string Info = 1;
+}
+message CRisk {
+   optional double AtmVol = 1 [default = 0];
+   optional double CallWing = 2 [default = 0];
+   optional double PutWing = 3 [default = 0];
+   optional double Skew = 4 [default = 0];
+   optional double Smile = 5 [default = 0];
+   optional double VolSpot = 6 [default = 0];
+   optional double InterestRateLong = 7 [default = 0];
+   optional double DividendRate = 8 [default = 0];
+   optional bcl.DateTime ExpireDate = 9;
+   optional double UndlLastPrice = 10 [default = 0];
+   optional double Strike = 11 [default = 0];
+   optional double OPLastPrice = 12 [default = 0];
+   optional bool CallPut = 13 [default = false];
+   optional double Bid1 = 14 [default = 0];
+   optional double Ask1 = 15 [default = 0];
+   optional double TheoreticalPrice = 16 [default = 0];
+   optional double ImpliedVol = 17 [default = 0];
+   optional double Bid1Vol = 18 [default = 0];
+   optional double Ask1Vol = 19 [default = 0];
+   optional double Z1Vol = 20 [default = 0];
+   optional double Delta = 21 [default = 0];
+   optional double Gamma = 22 [default = 0];
+   optional double Vega = 23 [default = 0];
+   optional double Theta = 24 [default = 0];
+   optional double Rho = 25 [default = 0];
+   optional double TheoPnL = 26 [default = 0];
+   repeated ChangeRiskData changeRiskData = 27;
+   repeated CrashRiskData crashRiskData = 28;
+}
+message CancelOrderMsg {
+   optional string SysOrdID = 1;
+   optional bool MarkAsEnd = 2 [default = false];
+   optional bool MarkETFProceed = 3 [default = false];
+   optional bool MarkAsCanceled = 4 [default = false];
+   optional bool MarkAsFillCanceled = 5 [default = false];
+   optional bool PauseAlgo = 6 [default = false];
+   optional bool ResumeAlgo = 7 [default = false];
+   optional string Location = 8;
+}
+message CancelledOrderNumMsg {
+   optional string Account = 1;
+   optional int32  CancelledOrderNum = 2 [default = 0];
+   optional double CancelledOrderRatio = 3 [default = 0];
+   optional string Location = 4;
+}
+message OrderFullfillmentRatioMsg {
+   optional string Account = 1;
+   optional double CurrentRatio = 2 [default = 0];
+   optional int32 AlertLevel = 3 [default = 0];
+   optional string Location = 4;
+}
+message ChangeRiskData {
+   optional double changeRatio = 1 [default = 0];
+   optional double TheoreticalPrice = 2 [default = 0];
+   optional double Z1Vol = 3 [default = 0];
+   optional double Delta = 4 [default = 0];
+   optional double Gamma = 5 [default = 0];
+   optional double Vega = 6 [default = 0];
+   optional double Theta = 7 [default = 0];
+   optional double Rho = 8 [default = 0];
+   optional double TheoPnL = 9 [default = 0];
+}
+message ClearAbnormalStateMsg {
+   optional string Symbol = 1;
+   optional bool ClearBidAbnormal = 2 [default = false];
+   optional bool ClearAskAbnormal = 3 [default = false];
+   optional string Location = 4;
+}
+message CrashPara {
+   optional double undlChgRatio = 1 [default = 0];
+   optional double volChgRatio = 2 [default = 0];
+}
+message CrashRiskData {
+   optional double TheoreticalPrice = 1 [default = 0];
+   optional double Z1Vol = 2 [default = 0];
+   optional double Delta = 3 [default = 0];
+   optional double Gamma = 4 [default = 0];
+   optional double Vega = 5 [default = 0];
+   optional double Theta = 6 [default = 0];
+   optional double Rho = 7 [default = 0];
+   optional double TheoPnL = 8 [default = 0];
+   optional CrashPara crashPara = 9;
+}
+message DailyPL {
+   optional double ONPL = 1 [default = 0];
+   optional double TotalPL = 2 [default = 0];
+   optional double AccPL = 3 [default = 0];
+   optional int32 Pos = 4 [default = 0];
+   optional double ClosePrice = 5 [default = 0];
+   optional double Turnover = 6 [default = 0];
+   optional double Delta = 7 [default = 0];
+   optional double Gamma = 8 [default = 0];
+   optional double Vega = 9 [default = 0];
+   optional double Theta = 10 [default = 0];
+   optional double Rho = 11 [default = 0];
+   optional InstrumentPosition Detail = 12;
+   optional double ClosePL = 13 [default = 0];
+   optional int32 AvgCost = 14 [default = 0];
+}
+enum ExecutionStyle {
+   Neutral = 0;
+   Aggressive = 1;
+   Passive = 2;
+}
+message Instrument {
+   optional int32 index = 1 [default = 0];
+   optional uint32 id = 2 [default = 0];
+   optional string ticker = 3;
+   optional int32 ExchangeIDWire = 4 [default = 0];
+   optional int32 MarketSectorIDWire = 5 [default = 0];
+   optional int32 TypeIDWire = 6 [default = 0];
+   optional int32 Type2IDWire = 7 [default = 0];
+   optional string name = 8;
+   optional double BidMargin = 9 [default = 0];
+   optional double AskMargin = 10 [default = 0];
+   optional double ValPT = 11 [default = 0];
+   optional double BuyCommission = 12 [default = 0];
+   optional double SellCommission = 13 [default = 0];
+   optional double ShortSellCommission = 14 [default = 0];
+   optional double Slippage = 15 [default = 0];
+   optional double CostPerContract = 16 [default = 0];
+   optional double Strike = 17 [default = 0];
+   optional bool CallPut = 18 [default = false];
+   optional bcl.DateTime ExpireDate = 19;
+   optional string underlyingTickersWire = 20;
+   optional string tickSizeWired = 21;
+   optional string sessionWired = 22;
+   optional int32 crncyWired = 23 [default = 0];
+   optional int32 basecrncyWired = 24 [default = 0];
+   optional double closeWired = 25 [default = 0];
+   optional double prevCloseWired = 26 [default = 0];
+   optional int32 roundLotWired = 27 [default = 0];
+   optional int32 marketStatusWired = 28 [default = 0];
+   optional bool CrossMarket = 29 [default = false];
+   optional double prevSettlementWired = 30 [default = 0];
+   optional string trackunderlyingTickersWire = 31;
+   optional double StampCost = 32 [default = 0];
+   optional string Symbol = 33;
+   // the following represent sub-types; at most 1 should have a value
+   optional TestInstrument TestInstrument = 100;
+}
+message InstrumentInfoRequestMsg {
+   required bool IsAll = 1 [default = false];
+   optional bool IncludeStaticInfo = 2 [default = false];
+   optional bcl.DateTime LastUpdate = 3;
+   repeated uint32 Targets = 4;
+   optional bool IncludeDailyBar = 5 [default = false];
+   optional bcl.DateTime StaticLastUpdate = 6;
+   optional string market = 7 [default = "any,any"];
+}
+message InstrumentInfoResponseMsg {
+   repeated Instrument Targets = 1;
+   repeated MarketDataResponseMsg Infos = 2;
+   repeated OptionRiskMsg Risks = 3;
+   optional bcl.DateTime LatestReceiveTime = 4;
+   optional bcl.DateTime StaticLatestReceiveTime = 5;
+}
+message InstrumentPosition {
+   optional double Long = 1 [default = 0];
+   optional double LongAvailable = 2 [default = 0];
+   optional double LongCost = 3 [default = 0];
+   optional double Short = 4 [default = 0];
+   optional double ShortCost = 5 [default = 0];
+   optional double ShortAvailable = 6 [default = 0];
+   optional double PrevNet = 7 [default = 0];
+   optional int32 DayTradeCount = 8 [default = 0];
+   optional double DayLong = 9 [default = 0];
+   optional double DayShort = 10 [default = 0];
+   optional double DayLongCost = 11 [default = 0];
+   optional double DayShortCost = 12 [default = 0];
+   optional double DayTradeCommission = 13 [default = 0];
+   optional double DayOpenShort = 14 [default = 0];
+   optional double DayCloseShort = 15 [default = 0];
+   optional double HoldingsDelta = 16 [default = 0];
+   optional double HoldingsGamma = 17 [default = 0];
+   optional double HoldingsVega = 18 [default = 0];
+   optional double HoldingsTheta = 19 [default = 0];
+   optional double HoldingsRho = 20 [default = 0];
+   optional double RealizedPL = 21 [default = 0];
+   optional double FloatingPL = 22 [default = 0];
+   optional int32 RedPurAvailable = 23 [default = 0];
+   optional double PrevLong = 29 [default = 0];
+   optional double PrevLongAvailable = 30 [default = 0];
+   optional double PrevShort = 31 [default = 0];
+   optional double PrevRedPur = 32 [default = 0];
+   optional double YdLongRemain = 33 [default = 0];
+   optional double YdShortRemain = 34 [default = 0];
+   optional int32 HedgeFlagWire = 35 [default = 0];
+   optional double Quota = 36 [default = 0];
+   optional double PreQuota = 37 [default = 0];
+   optional string RealAccount = 38;
+   optional double DayTradeFee = 39;
+   optional string Symbol = 40;
+}
+message KeyValuePair_Int32_String {
+   optional int32 Key = 1;
+   optional string Value = 2;
+}
+message KeyValuePair_String_Dictionary_UInt32_InstrumentPosition {
+   optional string Key = 1;
+   repeated KeyValuePair_UInt32_InstrumentPosition Value = 2;
+}
+message KeyValuePair_String_String {
+   optional string Key = 1;
+   optional string Value = 2;
+}
+message KeyValuePair_UInt32_InstrumentPosition {
+   optional uint32 Key = 1;
+   optional InstrumentPosition Value = 2;
+}
+message MarketDataResponseMsg {
+   required uint32 ID = 1 [default = 0];
+   optional TradeInfoChangedEventArgs Args = 2;
+   optional string InstrumentID = 3;
+   optional string ExchangeID = 4;
+   optional uint32 Type = 5 [default = 0];
+   optional uint64 SequenceNo = 6 [default = 0];
+   optional string Symbol = 7;
+}
+message MarketDataSubscribeMsg {
+   repeated uint32 Targets = 1;
+   repeated string Symbols = 2;
+}
+message MaxMsg {
+   optional Instrument Target = 1;
+   optional TimeValueBase Trade = 2;
+   repeated KeyValuePair_Int32_String NestMessages = 3;
+}
+message NewOrderMsg {
+   required uint32 TargetID = 1 [default = 0];
+   optional Order Order = 2;
+   optional string Location = 3;
+   optional string Symbol = 4;
+   repeated NewOrderMsg childOrdersWire = 5;
+   repeated NewOrderMsg ChildOrder = 6;
+}
+enum OperateChildOrderTimeID {
+   Unconditional = 0;
+   UntilValidated = 1;
+}
+message OptionRiskMsg {
+   required uint32 ID = 1 [default = 0];
+   optional CRisk OptionRisk = 2;
+}
+message Order {
+   optional string ID = 1;
+   optional string SysID = 2;
+   optional int32 TradeTypeWire = 3 [default = 0];
+   optional int32 TypeWire = 4 [default = 0];
+   optional int32 PropertyWire = 5 [default = 0];
+   optional int32 Qty = 6 [default = 0];
+   optional double Price = 7 [default = 0];
+   optional int32 ExQty = 8 [default = 0];
+   optional double ExAvgPrice = 9 [default = 0];
+   optional int32 DirectionWire = 10 [default = 0];
+   optional int32 StatusWire = 11 [default = 0];
+   optional int32 OperationStatusWire = 12 [default = 0];
+   optional string OrderAccount = 13;
+   optional string UserID = 14;
+   optional string StrategyID = 15;
+   optional string ParentOrderID = 16;
+   optional string Note = 17;
+   optional bcl.DateTime TransactionTime = 18;
+   optional bcl.DateTime OperationTime = 19;
+   optional bcl.DateTime CreationTime = 20;
+   optional AlgoParameter Parameters = 21;
+   optional int32 NominalTradeTypeWire = 22 [default = 0];
+   optional int32 HedgeTypeWire = 23 [default = 0];
+   optional int32 StrategyTypeWire = 24 [default = 0];
+   optional int32 AlgoStatus = 25 [default = 0];
+   optional string CliOrdID = 26;
+}
+message OrderInfoChangedEventArgs {
+   optional int32 StatusWire = 1 [default = 0];
+   optional int32 OperationStatusWire = 2 [default = 0];
+   optional int32 RejectReasonWire = 3 [default = 0];
+   optional double ExPrice = 4 [default = 0];
+   optional int32 ExQty = 5 [default = 0];
+   optional string SysID = 6;
+   optional bcl.DateTime UpdateTime = 7;
+   optional string Note = 8;
+}
+message OrderInfoRequestMsg {
+   optional bool IsAll = 1 [default = false];
+   optional bcl.DateTime LastUpdateTime = 2;
+}
+message OrderInfoResponseMsg {
+   repeated NewOrderMsg Orders = 1;
+   optional bcl.DateTime LatestReceiveTime = 2;
+   repeated CancelledOrderNumMsg CancelledOrderNumInfo = 3;
+   repeated OrderFullfillmentRatioMsg OrderFullfillmentRatio = 4;
+}
+message OrderStatusResponseMsg {
+   required string OrdID = 1;
+   optional OrderInfoChangedEventArgs Args = 2;
+}
+message OrderStatusSubscribeMsg {
+   optional bool IsAll = 1 [default = false];
+}
+message PASummary {
+   optional string Period = 1;
+   optional double PL = 2 [default = 0];
+   optional double Return = 3 [default = 0];
+   optional double MaxDD1Day = 4 [default = 0];
+   optional double MaxDD = 5 [default = 0];
+   optional double Std = 6 [default = 0];
+   optional double SharpRatio = 7 [default = 0];
+   optional double SortinoUPR = 8 [default = 0];
+   optional double AvgWinAvgLosss = 9 [default = 0];
+   optional double WinRatio = 10 [default = 0];
+   repeated PASummary SubPeriodSummary = 11;
+   optional double AnnualizedReturn = 12 [default = 0];
+   optional double AnnualizedStd = 13 [default = 0];
+   optional double TransCostWeight = 14 [default = 0];
+   optional bcl.TimeSpan AvgHoldingPeriod = 15 ;
+}
+message PositionRiskRequestMsg {
+    optional bcl.DateTime LastUpdateTime = 1;
+}
+message PositionRiskResponseMsg {
+   repeated KeyValuePair_String_Dictionary_UInt32_InstrumentPosition Holdings = 1;
+   repeated KeyValuePair_String_Dictionary_UInt32_InstrumentPosition Holdings2 = 2;
+   optional bcl.DateTime LatestReceiveTime = 3;
+}
+message ProtoDataSourceInfo {
+   optional int32 ID = 1 [default = 0];
+   optional string Name = 2;
+   optional string Status = 3;
+   optional string Info = 4;
+}
+message ProtoOrderRouteInfo {
+   optional int32 ID = 1 [default = 0];
+   optional string Name = 2;
+   optional string Status = 3;
+   optional string Info = 4;
+}
+message ProtoStrategyInfo {
+   optional string Name = 1;
+   repeated KeyValuePair_String_String StaticInfo = 2;
+   repeated KeyValuePair_String_String Parameter = 3;
+   repeated KeyValuePair_String_String Variable = 4;
+   optional bool IsEnabled = 5 [default = false];
+   optional string Location = 6;
+   repeated KeyValuePair_String_String State = 7;
+}
+enum QuoteLevelID {
+   OppsiteSidePlus3Constrained = -203;
+   OppsiteSideMinus4 = -108;
+   OppsiteSideMinus3 = -107;
+   OppsiteSideMinus2 = -106;
+   OppsiteSideMinus1 = -105;
+   OppsiteSidePlus4 = -104;
+   OppsiteSidePlus3 = -103;
+   OppsiteSidePlus2 = -102;
+   OppsiteSidePlus1 = -101;
+   OppositeSide = -100;
+   Bid5 = -5;
+   Bid4 = -4;
+   Bid3 = -3;
+   Bid2 = -2;
+   Bid1 = -1;
+   MidPrice = 0;
+   Ask1 = 1;
+   Ask2 = 2;
+   Ask3 = 3;
+   Ask4 = 4;
+   Ask5 = 5;
+   SameSide = 100;
+   SameSidePlus1 = 101;
+   SameSidePlus2 = 102;
+   SameSidePlus3 = 103;
+   SameSidePlus4 = 104;
+   SameSideMinus1 = 105;
+   SameSideMinus2 = 106;
+   SameSideMinus3 = 107;
+   SameSideMinus4 = 108;
+   IPOVRef = 110;
+   EstimatedNAV = 111;
+}
+message ReplaceOrderMsg {
+   optional string SysOrdID = 1;
+   optional int32 Qty = 2 [default = 0];
+   optional double Price = 3 [default = 0];
+   optional string Location = 4;
+}
+message ServerInfoRequestMsg {
+   optional bcl.DateTime LastUpdateTime = 1;
+}
+message ServerInfoResponseMsg {
+   optional bcl.DateTime UpdateTime = 1;
+   repeated ProtoDataSourceInfo DataSources = 2;
+   repeated ProtoOrderRouteInfo OrderRoutes = 3;
+   optional string Name = 4;
+   optional bool IsPanic = 5 [default = false];
+}
+message ServerParameterChangeRequestMsg {
+   optional string Command = 1;
+   optional string Location = 2;
+   optional string ServiceName = 3;
+}
+message StrategyInfoRequestMsg {
+   optional bool IsFirstRequest = 1 [default = false];
+   optional string StratName = 2;
+   optional bcl.DateTime LastUpdateTime = 3;
+}
+message StrategyInfoResponseMsg {
+   repeated ProtoStrategyInfo Strats = 1;
+   optional bcl.DateTime LatestReceiveTime = 2;
+}
+message StrategyParameterChangeRequestMsg {
+   optional string Name = 1;
+   optional bool IsEnable = 2 [default = false];
+   repeated KeyValuePair_String_String Parameter = 3;
+   optional string Location = 4;
+}
+message StrategyPositionChangeRequestMsg {
+   optional string Name = 1;
+   optional string Location = 2;
+}
+message StrategyStateChangeRequestMsg {
+   optional string Name = 1;
+   repeated KeyValuePair_String_String State = 2;
+   optional string Location = 3;
+}
+message TestInstrument {
+   repeated TimeValueBase TradePL = 2;
+   repeated TimeValueBase DailyPL = 3;
+   repeated PASummary SummaryByTrade = 4;
+}
+message TimeValueBase {
+   optional bcl.DateTime Time = 1;
+   // the following represent sub-types; at most 1 should have a value
+   optional AnalyserState AnalyserState = 3;
+   optional Trade Trade = 4;
+   optional DailyPL DailyPL = 5;
+   optional string Location = 6;
+}
+message Trade {
+   optional string symbol = 1;
+   optional int32 Pos = 2 [default = 0];
+   optional int32 Qty = 3 [default = 0];
+   optional double Price = 4 [default = 0];
+   optional string Note = 5;
+   optional int32 TradeTypeWired = 6 [default = 0];
+   optional bcl.DateTime ReceiveTime = 7;
+   optional string StrategyID = 8;
+   optional string AccountID = 9;
+   optional string OrderID = 10;
+   optional int32 NominalTradeTypeWired = 11 [default = 0];
+   optional string UserID = 12;
+   // the following represent sub-types; at most 1 should have a value
+   optional TradePL TradePL = 15;
+   optional double TradeFee = 16;
+   optional int32 SelfCross = 17;
+   optional string TradeID = 18;
+}
+enum TradeDirectionID {
+   SELL = -1;
+   BUY = 1;
+}
+message TradeInfoChangedEventArgs {
+   optional bcl.DateTime UpdateTime = 1;
+   optional bool HasNewTrade = 2 [default = false];
+   optional double LastPrice = 3 [default = 0];
+   optional int32 Volume = 4 [default = 0];
+   optional int64 VolumeTdy = 5 [default = 0];
+   optional double Turnover = 6 [default = 0];
+   optional double Bid1 = 7 [default = 0];
+   optional int32 Bid1Size = 8 [default = 0];
+   optional int32 Bid1Order = 9 [default = 0];
+   optional double Bid2 = 10 [default = 0];
+   optional int32 Bid2Size = 11 [default = 0];
+   optional int32 Bid2Order = 12 [default = 0];
+   optional double Bid3 = 13 [default = 0];
+   optional int32 Bid3Size = 14 [default = 0];
+   optional int32 Bid3Order = 15 [default = 0];
+   optional double Bid4 = 16 [default = 0];
+   optional int32 Bid4Size = 17 [default = 0];
+   optional int32 Bid4Order = 18 [default = 0];
+   optional double Bid5 = 19 [default = 0];
+   optional int32 Bid5Size = 20 [default = 0];
+   optional int32 Bid5Order = 21 [default = 0];
+   optional double Ask1 = 22 [default = 0];
+   optional int32 Ask1Size = 23 [default = 0];
+   optional int32 Ask1Order = 24 [default = 0];
+   optional double Ask2 = 25 [default = 0];
+   optional int32 Ask2Size = 26 [default = 0];
+   optional int32 Ask2Order = 27 [default = 0];
+   optional double Ask3 = 28 [default = 0];
+   optional int32 Ask3Size = 29 [default = 0];
+   optional int32 Ask3Order = 30 [default = 0];
+   optional double Ask4 = 31 [default = 0];
+   optional int32 Ask4Size = 32 [default = 0];
+   optional int32 Ask4Order = 33 [default = 0];
+   optional double Ask5 = 34 [default = 0];
+   optional int32 Ask5Size = 35 [default = 0];
+   optional int32 Ask5Order = 36 [default = 0];
+   repeated string Bid1Broker = 37;
+   repeated string Bid2Broker = 38;
+   repeated string Bid3Broker = 39;
+   repeated string Bid4Broker = 40;
+   repeated string Bid5Broker = 41;
+   repeated string Ask1Broker = 42;
+   repeated string Ask2Broker = 43;
+   repeated string Ask3Broker = 44;
+   repeated string Ask4Broker = 45;
+   repeated string Ask5Broker = 46;
+   optional double Delta = 47 [default = 0];
+   optional double Gamma = 48 [default = 0];
+   optional double Vega = 49 [default = 0];
+   optional double Theta = 50 [default = 0];
+   optional double ImpliedVol = 51 [default = 0];
+   optional double Rho = 52 [default = 0];
+   optional double Z1Vol = 53 [default = 0];
+   optional double FwdVol = 54 [default = 0];
+   optional int32 MarketStatusWired = 55 [default = 0];
+   optional double Bid1Vol = 56 [default = 0];
+   optional double Ask1Vol = 57 [default = 0];
+   optional double TheoreticalPrice = 58 [default = 0];
+   optional double ipov = 59 [default = 0];
+   optional double NominalPrice = 60 [default = 0];
+   optional double IPOVRef = 61 [default = 0];
+   optional int32 BidAbnormal = 62 [ default = 0 ];
+   optional int32 AskAbnormal = 63 [ default = 0 ];
+   optional int64 OpenInterest = 64 [ default = 0 ];
+   optional double Downlimit = 65 [ default = 0 ];
+   optional double Uplimit = 66 [ default = 0 ];
+}
+message TradeInfoRequestMsg {
+   optional bcl.DateTime LastUpdateTime = 1;
+}
+message TradeInfoResponseMsg {
+   repeated TimeValueBase Trades = 1;
+   optional bcl.DateTime LatestReceiveTime = 2;
+}
+message TradePL {
+   optional double PL = 1 [default = 0];
+   optional double AccPL = 2 [default = 0];
+   optional double Commission = 3 [default = 0];
+   optional double Slippage = 4 [default = 0];
+}
+enum TradeTypeID {
+   NORMAL = 0;
+   SHORT = 1;
+   OPEN = 2;
+   CLOSE = 3;
+   CLOSE_YESTERDAY = 4;
+   RedPur = 5;
+   MergeSplit = 6;
+   NA = 7;
+   EXERCISE = 8;
+}
+enum IOTypeID {
+   Inner1 = 0;
+   Inner2 = 1;
+   Outer = 2;
+}
+enum ValidateLeg2TimeID {
+   BeforeLeg1Place = 0;
+   AfterLeg1Filled = 1;
+}
+message LoginMsg{
+   optional string UserName = 1;
+   optional string BrokerName = 2;
+   optional string AccessIDPrefix = 3;
+   optional string InternetIP = 4;
+   optional string LanIP = 5;
+   optional string MAC = 6;
+   optional string HDID = 7;
+   optional string HDPI = 8;
+   optional string HostName = 9;
+   optional string CPUID = 10;
+   optional string OSINFO = 11;
+   optional string MD5SUM = 12;
+   optional int32 ServerSideAuth = 13;
+}
+message PhoneTradeItem{
+   optional string Fund = 1;
+   optional string Strategy1 = 2;
+   optional string Strategy2 = 3;
+   optional string Symbol = 4;
+   optional TradeDirectionID Direction = 5;
+   optional TradeTypeID TradeType = 6;
+   optional int32 HedgeFlag = 7;
+   optional double ExPrice = 8;
+   optional int32 ExQty = 9;
+   optional IOTypeID IOType = 10;
+}
+message PhoneTradeRequestMsg{
+   repeated PhoneTradeItem Trades = 1;
+   optional string Location = 2;
+}
+message TradeServerInfoRequestMsg{
+   optional bcl.DateTime LastUpdateTime = 1;
+}
+message TradeServerInfoResponseMsg{
+   repeated string TradeServerInfo = 1;
+   optional bcl.DateTime LatestReceiveTime = 2;
+   repeated Server Servers = 3;
+}
+message Server{
+   optional string Location = 1;
+   optional bool IsPanic = 2 [default = false];
+   optional bool Connected = 3 [default = false];
+   optional string Name = 4;
+}
+message SubscribeTradeServerInfoRequestMsg{
+   repeated string TradeServerInfo = 1;
+}
+message SubscribeTradeServerInfoResponseMsg{
+   repeated string TradeServerInfo = 1;
+}
+
+message UserItem{
+    optional string name = 1;
+    optional string targets = 2;
+    optional string strategies = 3;
+}
+message UserMsg{
+    repeated UserItem users = 1;
+}

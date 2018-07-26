@@ -1,0 +1,202 @@
+"TIME","NAME","VALUE"
+"2017/12/22 14:44:58","BBreaker.rb_test_1min_para1","{
+    ""Account"": ""steady_return"",
+    ""Bandwidth"": ""0.001"",
+    ""BarDurationMin"": ""1"",
+    ""Length1"": ""3"",
+    ""Length2"": ""2"",
+    ""StopWin"": ""0.01"",
+    ""Target"": ""rb1801"",
+    ""max_slippage"": ""3"",
+    ""positionCtrlFlag"": ""0"",
+    ""tq.steady_return.max_long_position"": ""1"",
+    ""tq.steady_return.max_short_position"": ""1"",
+    ""tq.steady_return.qty_per_trade"": ""2""
+}
+"
+"2017/7/28 11:18:32","BollingerBandReversion.rm_5min_para1","{
+    ""Account"": ""steady_return"",
+    ""BarDurationMin"": ""5"",
+    ""Target"": ""RM901"",
+    ""bigMoveThreshold"": ""0.001"",
+    ""dollarTrailingPercentage"": ""0.001"",
+    ""expireBarNum"": ""100"",
+    ""expireRatio"": ""0.020000"",
+    ""length"": ""3"",
+    ""max_slippage"": ""3"",
+    ""numDevs"": ""0.5"",
+    ""positionCtrlFlag"": ""0"",
+    ""tolerance"": ""0.001"",
+    ""tq.steady_return.max_long_position"": ""1"",
+    ""tq.steady_return.max_short_position"": ""1"",
+    ""tq.steady_return.qty_per_trade"": ""2""
+}
+"
+"2017/11/30 17:07:47","BreakBandDync.sr_test_1min_para1","{
+    ""Account"": ""steady_return"",
+    ""BarDurationMin"": ""1"",
+    ""Target"": ""SR809"",
+    ""freezeBarNumCoeff"": ""10"",
+    ""freezeProfitThreshold"": ""0.05"",
+    ""initLength"": ""3"",
+    ""initTrailingPct"": ""0.001"",
+    ""maxLength"": ""5"",
+    ""maxTrailingPct"": ""0.002"",
+    ""max_slippage"": ""3"",
+    ""numDevs"": ""0.2"",
+    ""positionCtrlFlag"": ""0"",
+    ""profitDrawdownCoeff"": ""0.3"",
+    ""tq.steady_return.max_long_position"": ""1"",
+    ""tq.steady_return.max_short_position"": ""1"",
+    ""tq.steady_return.qty_per_trade"": ""2""
+}
+"
+"2017/9/20 17:45:48","CCIMktRecg.al_5min_para1","{
+    ""Account"": ""steady_return"",
+    ""BarDurationMin"": ""1"",
+    ""CciLen"": ""5"",
+    ""FixedPointTrailing"": ""10000"",
+    ""RecgLen"": ""216"",
+    ""SlopeNum"": ""1.000000"",
+    ""StopLossAmount"": ""1.000000"",
+    ""Target"": ""al1809"",
+    ""Threshold"": ""101.000000"",
+    ""UpDownRate"": ""1.000000"",
+    ""max_slippage"": ""3"",
+    ""positionCtrlFlag"": ""0"",
+    ""tq.steady_return.max_long_position"": ""1"",
+    ""tq.steady_return.max_short_position"": ""1"",
+    ""tq.steady_return.qty_per_trade"": ""2""
+}
+"
+"2017/8/5 17:58:04","CCIOsc.hc_15min_para1","{
+    ""Account"": ""steady_return"",
+    ""Target"": ""hc1810"",
+    ""bar_duration_"": ""1"",
+    ""cci_avg_len_"": ""1"",
+    ""cci_len_"": ""5"",
+    ""dollarTrailingPercentage"": ""0.0030000"",
+    ""frozen_bar_num_"": ""20"",
+    ""half_band_width_"": ""10.000000"",
+    ""max_slippage"": ""3"",
+    ""positionCtrlFlag"": ""0"",
+    ""tolerable_gap_percent_"": ""1.200000"",
+    ""tolerable_reversal_percent_"": ""10.000000"",
+    ""tq.steady_return.max_long_position"": ""1"",
+    ""tq.steady_return.max_short_position"": ""1"",
+    ""tq.steady_return.qty_per_trade"": ""2""
+}
+"
+"2017/8/21 14:55:04","CCIRvs.pp_1min_para1","{
+    ""Account"": ""steady_return"",
+    ""Target"": ""pp1809"",
+    ""bar_duration_"": ""1"",
+    ""cci_avg_len_"": ""1"",
+    ""cci_len_"": ""5"",
+    ""dollarTrailingPercentage"": ""0.0030000"",
+    ""half_band_width_"": ""10"",
+    ""max_slippage"": ""3"",
+    ""narrow_"": ""0"",
+    ""positionCtrlFlag"": ""0"",
+    ""tolerable_reversal_percent_"": ""10"",
+    ""tq.steady_return.max_long_position"": ""1"",
+    ""tq.steady_return.max_short_position"": ""1"",
+    ""tq.steady_return.qty_per_trade"": ""2""
+}
+"
+"2018/1/17 14:03:23","Donchian.m_test_1min_para1","{
+    ""Account"": ""steady_return"",
+    ""BarDurationMin"": ""1"",
+    ""Length1"": ""3"",
+    ""Length2"": ""2"",
+    ""Target"": ""m1901"",
+    ""max_slippage"": ""3"",
+    ""positionCtrlFlag"": ""0"",
+    ""stoploss"": ""0.001"",
+    ""stopwin"": ""0.001"",
+    ""tq.steady_return.max_long_position"": ""1"",
+    ""tq.steady_return.max_short_position"": ""1"",
+    ""tq.steady_return.qty_per_trade"": ""2""
+}
+"
+"2017/11/9 15:51:45","FollowTrendDync.jm_test_1min_para1","{
+    ""Account"": ""steady_return"",
+    ""BarDurationMin"": ""1"",
+    ""FreezeBarNum"": ""3"",
+    ""Target"": ""jm1809"",
+    ""bigMoveThreshold"": ""0.1"",
+    ""initTolerance"": ""0.001"",
+    ""maxTolerance"": ""0.01"",
+    ""max_slippage"": ""3"",
+    ""positionCtrlFlag"": ""0"",
+    ""profitDrawdownCoeff"": ""0.1"",
+    ""tq.steady_return.max_long_position"": ""1"",
+    ""tq.steady_return.max_short_position"": ""1"",
+    ""tq.steady_return.qty_per_trade"": ""2""
+}
+"
+"2018/3/1 13:49:31","Hans.i_1min_para1","{
+    ""Account"": ""steady_return"",
+    ""BarDurationMin"": ""1"",
+    ""EndTime1"": ""1330"",
+    ""EndTime2"": ""05"",
+    ""HansLen"": ""2"",
+    ""MaxBand"": ""10000"",
+    ""StartTime1"": ""1328"",
+    ""StartTime2"": ""1500"",
+    ""StopLoss"": ""1"",
+    ""StopProfit"": ""2"",
+    ""Lastday"": ""6"",
+    ""Target"": ""i1809"",
+    ""max_slippage"": ""3"",
+    ""positionCtrlFlag"": ""0"",
+    ""tq.steady_return.max_long_position"": ""1"",
+    ""tq.steady_return.max_short_position"": ""1"",
+    ""tq.steady_return.qty_per_trade"": ""2""
+}
+"
+"2018/1/30 14:46:25","HighLowBandADX.cu_test_1min_para1","{
+    ""Account"": ""steady_return"",
+    ""BarDurationMin"": ""1"",
+    ""Length"": ""3"",
+    ""Target"": ""cu1809"",
+    ""baseStopLossPt"": ""1"",
+    ""baseTrailingPt"": ""1"",
+    ""maxStopLossPt"": ""3"",
+    ""max_slippage"": ""3"",
+    ""positionCtrlFlag"": ""0"",
+    ""tq.steady_return.max_long_position"": ""1"",
+    ""tq.steady_return.max_short_position"": ""1"",
+    ""tq.steady_return.qty_per_trade"": ""2""
+}
+"
+"2017/9/6 16:13:41","PriceVolRatio.ru_test_para1","{
+    ""Account"": ""steady_return"",
+    ""BarDurationMin"": ""1"",
+    ""Target"": ""ru1809"",
+    ""avgLen"": ""3"",
+    ""dollarTrailingPercentage"": ""0.0010000"",
+    ""max_slippage"": ""3"",
+    ""numDevs"": ""0.1"",
+    ""positionCtrlFlag"": ""0"",
+    ""tq.steady_return.max_long_position"": ""1"",
+    ""tq.steady_return.max_short_position"": ""1"",
+    ""tq.steady_return.qty_per_trade"": ""2"",
+    ""volThresholdCoeff"": ""0.001""
+}
+"
+"2018/1/15 14:35:05","VolumeBreakthrough.zn_test_1min_para1","{
+    ""Account"": ""steady_return"",
+    ""BarDurationMin"": ""1"",
+    ""Target"": ""zn1809"",
+    ""VolThresholdMulti"": ""0.5"",
+    ""countNum"": ""3"",
+    ""dollarTrailingPercentage"": ""0.002"",
+    ""max_slippage"": ""3"",
+    ""positionCtrlFlag"": ""0"",
+    ""stopLossPct"": ""0.001"",
+    ""tq.steady_return.max_long_position"": ""1"",
+    ""tq.steady_return.max_short_position"": ""1"",
+    ""tq.steady_return.qty_per_trade"": ""2""
+}
+"

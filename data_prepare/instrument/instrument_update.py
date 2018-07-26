@@ -179,6 +179,11 @@ class InstrumentUpdate(object):
               ('PREV_CLOSE_UPDATE_TIME', self.pre_close_update_time, 'UPDATE_DATE', self.physical_date_begin)
         self.execute_db_sql('common', [sql])
 
+    def update_future_option_trade_session(self):
+        sql_template = "UPDATE instrument SET `SESSION` = '(19700101," \
+                       "20991231)(1,5)(08:00:00,23:00:00)'  where exchange_id in (20,21,22,25)"
+        self.execute_db_sql('common', [sql_template])
+
     def update_instrument_day(self, date):
         # ZhouJie project
         lts_price_analysis_add(date)
@@ -190,7 +195,7 @@ class InstrumentUpdate(object):
         # update for QA environment
         self.update_stock_buy_sell_commission()
         self.update_pre_close_update_time()
-
+        self.update_future_option_trade_session()
         # Field checking
         self.check_pre_close_field()
         self.check_track_undl_tickers_field()
@@ -225,7 +230,7 @@ class InstrumentUpdate(object):
     
 if __name__ == '__main__':
     # update_control()
-    day = '20180521'
+    day = '20180713'
     iu_object = InstrumentUpdate()
     # ctp_price_analysis(day)
     iu_object.update_instrument_day(day)

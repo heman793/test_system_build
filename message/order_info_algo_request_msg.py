@@ -5,13 +5,11 @@ import zmq
 import AllProtoMsg_pb2
 from public.main_config import *
 import zlib
+from socket_init import socket_init
 
 def order_info_request_msg(last_update=None):
-    context = zmq.Context().instance()
-    print "Connecting to server"
-    socket = context.socket(zmq.DEALER)
-    socket.setsockopt(zmq.IDENTITY, b'127.0.0.1_real')
-    socket.connect(socket_connect_dict)
+    socket = socket_init()
+
     # 拼消息
     msg_order_info_request = AllProtoMsg_pb2.OrderInfoRequestMsg()
     if last_update is not None:
@@ -27,26 +25,21 @@ def order_info_request_msg(last_update=None):
     msg_type = 7
     msg_list = [six.int2byte(msg_type), msg_str]
 
-    # print "Send Order Info Request Message."
     socket.send_multipart(msg_list)
-    # print msg_list
 
     # 接收应答消息
     receive_message = socket.recv_multipart()
     # print "receive Order Info Response Message."
     msg_order_info_response = AllProtoMsg_pb2.OrderInfoResponseMsg()
     msg_order_info_response.ParseFromString(zlib.decompress(receive_message[1]))
-    # print receive_message[1]
-    orders = msg_order_info_response.Orders
-    # print orders
 
+    orders = msg_order_info_response.Orders
     order_msg_list = []
     for order_info in orders:
         order_msg_list.append(order_info)
-    # print order_msg_list[0]
     return order_msg_list
 
-    socket.close()
+    # socket.close()
 
 if __name__ == '__main__':
     order_info_request_msg()

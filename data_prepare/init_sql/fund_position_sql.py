@@ -4,6 +4,7 @@ from public.main_config import *
 from data_prepare.common.config_common import ConfigCommon
 from ysdata.data_info import FutureData
 from ysdata.future_info import *
+import sys
 from decimal import *
 from MySQLdb.cursors import DictCursor
 
@@ -44,10 +45,12 @@ class DataBaseUnit(ConfigCommon):
         elif table == 'instrument':
             sql = "select ticker, pre_price from instrument where  ticker= '%s'"
 
+        elif table == 'pf_account':
+            sql = "insert into pf_account values" \
+                  "('%s', '%s', '%s', '%s', null, '');"
         else:
             platform_logger.error("input wrong table '%s'" % table)
             return ''
-
         return sql
 
     @staticmethod
@@ -89,6 +92,43 @@ class DataBaseUnit(ConfigCommon):
         self.execute_db_sql(db='portfolio', sql_list=sql_list)
         print sql_list
 
+    def clear_pf_account(self, test_type):
+        strategy_config_path = os.path.join(version_path,
+                                            '%s_Config' % test_type)
+        filename = 'account_%s.csv' % test_type
+        df = pd.read_csv(os.path.join(strategy_config_path, filename))
+        sql_list = []
+        for ind in df.index.values:
+            pf_account_id = df.at[ind, 'pf_account_id']
+            delete_sql = "delete from %s where id = '%s'"
+            delete_table_list = ['pf_account']
+            map(lambda table: sql_list.append(delete_sql % (table, pf_account_id)),
+                delete_table_list)
+        self.execute_db_sql(db='portfolio', sql_list=sql_list)
+        print sql_list
+
+    def insert_pf_account(self, test_type):
+        sql_list = []
+        filename = 'account_%s.csv' % test_type
+        strategy_config_path = os.path.join(version_path,
+                                            '%s_Config' % test_type)
+        df = pd.read_csv(os.path.join(strategy_config_path, filename))
+        for ind in df.index.values:
+            account_id = df.at[ind, 'account_id']
+            pf_account_id = df.at[ind, 'pf_account_id']
+            instance_name = df.at[ind, 'instance_name']
+            dynamic_load_module = df.at[ind, 'dynamic_load_module']
+            strategy_fund_name = '%s-%s-%s-' % \
+                                 (instance_name, dynamic_load_module, fund_name)
+            sql_pf_account_template = self.get_sql_template('pf_account')
+            sql_pf_account = sql_pf_account_template % \
+                         (pf_account_id, instance_name,
+                          strategy_fund_name, dynamic_load_module)
+            sql_list.append(sql_pf_account)
+        self.execute_db_sql('portfolio', sql_list)
+        print sql_list
+
+
     def clear_table_restrictions(self):
         sql_list = []
         delete_sql = "delete from %s"
@@ -110,19 +150,15 @@ class DataBaseUnit(ConfigCommon):
             ticker = contract_str[3:]
         else:
             ticker = symbol
-        # print ticker
-        # print type(ticker)
         return ticker
 
-
-
     def insert_db_portfolio(self, test_type):
-
         sql_list = []
         sql_account_sql_template = self.get_sql_template('account_position')
         sql_pf_sql_template = self.get_sql_template('pf_position')
-
-        filename = 'strategy_loader_%s.csv' % test_type
+        filename = 'test_data_%s.csv' % test_type
+        strategy_config_path = os.path.join(version_path,
+                                            '%s_Config' % test_type)
         df = pd.read_csv(os.path.join(strategy_config_path, filename),
                          index_col='test_case_no')
 
@@ -136,18 +172,16 @@ class DataBaseUnit(ConfigCommon):
             prev_net = abs(long_amount - short_amount)
             account_id = df.at[clientid, 'account_id']
             pf_account_id = df.at[clientid, 'pf_account_id']
-
             sql_account = sql_account_sql_template % \
                           (self.physical_date, account_id, target, long_amount, long_cost, long_amount,
                            short_amount, short_cost, short_amount, prev_net, self.physical_datetime)
-            sql_pf_account = sql_pf_sql_template % \
+            sql_pf_position = sql_pf_sql_template % \
                           (self.physical_date, pf_account_id, target, long_amount,
                            long_cost, long_amount, short_amount, short_cost,
                            short_amount, prev_net)
 
             sql_list.append(sql_account)
-            sql_list.append(sql_pf_account)
-
+            sql_list.append(sql_pf_position)
         self.execute_db_sql('portfolio', sql_list)
         print sql_list
 
@@ -194,19 +228,23 @@ class DataBaseUnit(ConfigCommon):
         self.insert_db_common(date)
         self.clear_db_om()
         self.clear_db_portfolio(self.physical_date)
+        self.clear_pf_account(test_type)
+        self.insert_pf_account(test_type)
         self.clear_table_restrictions()
         self.insert_portfolio_cny(test_type)
         self.insert_db_portfolio(test_type)
         self.insert_portfolio_restrictions(test_type)
 
 if __name__ == '__main__':
-    date = '20180521'
+    date = '20180713'
     test_type = 'all'
     common_cfg = ConfigCommon().get_ini_input_dict()
     sql_prepare = DataBaseUnit()
-    sql_prepare.start_init_process(date, test_type)
+    sql_prepare.start_init_process(sys.argv[1], sys.argv[2])
+    # sql_prepare.start_init_process(date, test_type)
     # sql_prepare.get_target_symbol(test_type, clientid)
     # sql_prepare.clear_db_om()
     # sql_prepare.insert_db_portfolio(test_type)
+    # sql_prepare.clear_pf_account(test_type)
     # sql_prepare.get_target_pre_price(ticker='600000')
     # sql_prepare.insert_db_portfolio(test_type)

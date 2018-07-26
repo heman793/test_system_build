@@ -9,7 +9,7 @@ from tools.getConfig import getConfig
 from model.instrument import Instrument
 from tools.file_utils import FileUtils
 from model.eod_const import const
-from public.main_config import platform_logger, get_log_format_string
+# from public.main_config import platform_logger, get_log_format_string
 
 now = datetime.now()
 server_constant = ServerConstant()
@@ -44,10 +44,12 @@ def read_price_file_ctp(ctp_file_path):
             if product_class == '2':
                 option_list.append(base_model)
 
-    platform_logger.info('pre_add_future, add record num: %d' % len(future_list))
+    # platform_logger.info('pre_add_future, add record num: %d' % len(future_list))
+    print('pre_add_future, add record num: %d') % len(future_list)
     pre_add_future(future_list)  # 新增期货
 
-    platform_logger.info('pre_add_option, add record num: %d' % len(option_list))
+    # platform_logger.info('pre_add_option, add record num: %d' % len(option_list))
+    print ('pre_add_option, add record num: %d') % len(option_list)
     pre_add_option(option_list)  # 新增期权
 
 
@@ -148,7 +150,8 @@ def pre_add_future(message_array):
         ticker_type = filter(lambda x: not x.isdigit(), ticker)
         future_db.session = __get_trading_info_list(ticker_type)[-1]
         future_insert_list.append(future_db)
-        platform_logger.info('prepare insert future:', ticker)
+        # platform_logger.info('prepare insert future:', ticker)
+        print ('prepare insert future: %s') % ticker
 
 
 def __get_track_undl_tickers(ticker_type):
@@ -314,7 +317,8 @@ def get_instrument_max_id():
 
 
 def ctp_price_analysis_add(date):
-    platform_logger.info(get_log_format_string('Enter ctp_price_analysis_add'))
+    # platform_logger.info(get_log_format_string('Enter ctp_price_analysis_add'))
+    print ('Enter ctp_price_analysis_add')
     host_server_model = server_constant.get_server_model('host')
     global session
     global session_basicinfo
@@ -327,22 +331,27 @@ def ctp_price_analysis_add(date):
     else:
         filter_date_str = date_
     data_path = os.path.join(file_path, date)
+    # print data_path
+    # print filter_date_str
     instrument_file_list = FileUtils(data_path).filter_file('CTP_INSTRUMENT', filter_date_str)
 
     build_future_db_dict()
     get_instrument_max_id()
-    platform_logger.info('target_files: %s' % instrument_file_list)
+    # platform_logger.info('target_files: %s' % instrument_file_list)
+    print ('target_files: %s') % instrument_file_list
     for ctp_file in instrument_file_list:
-        platform_logger.info(get_log_format_string('Start: %s' % ctp_file))
+        # platform_logger.info(get_log_format_string('Start: %s' % ctp_file))
+        print ('Start: %s') % ctp_file
         read_price_file_ctp(os.path.join(data_path, ctp_file))
     session.commit()
 
     insert_server_db()
-    platform_logger.info(get_log_format_string('Exit ctp_price_analysis_add'))
+    # platform_logger.info(get_log_format_string('Exit ctp_price_analysis_add'))
+    print ('Exit ctp_price_analysis_add')
 
 
 if __name__ == '__main__':
     options = parse_arguments()
     date_str = options.date
-    day = '20170725'
+    day = '20180521'
     ctp_price_analysis_add(day)

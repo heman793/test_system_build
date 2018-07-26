@@ -1,17 +1,12 @@
 # -*- coding: utf-8 -*-
 
 import six
-import zmq
 import AllProtoMsg_pb2
-from public.main_config import *
 import zlib
+from socket_init import socket_init
 
 def instrument_info_request_msg():
-    context = zmq.Context().instance()
-    print "Connecting to server"
-    socket = context.socket(zmq.DEALER)
-    socket.setsockopt(zmq.IDENTITY, b'127.0.0.1_real')
-    socket.connect(socket_connect_dict)
+    socket = socket_init()
     # 拼消息
     msg_instrument_info_request = AllProtoMsg_pb2.InstrumentInfoRequestMsg()
     msg_instrument_info_request.IsAll = True
@@ -22,13 +17,13 @@ def instrument_info_request_msg():
     msg_type = 2
     msg_list = [six.int2byte(msg_type), msg_str]
 
-    print "Send Instrument Info Request Message."
+    # print "Send Instrument Info Request Message."
     socket.send_multipart(msg_list)
     # print msg_list
 
     # 接收应答消息
     receive_message = socket.recv_multipart()
-    print "receive Instrument Info Response Message."
+    # print "receive Instrument Info Response Message."
     msg_instrument_info_response = AllProtoMsg_pb2.InstrumentInfoResponseMsg()
     msg_instrument_info_response.ParseFromString(zlib.decompress(receive_message[1]))
 
@@ -42,8 +37,6 @@ def instrument_info_request_msg():
         market_msg_dict[market_msg.ID] = market_msg
         # print (market_msg_dict)
     return instrument_msg_dict, market_msg_dict
-
-    socket.close()
 
 if __name__ == '__main__':
     instrument_info_request_msg()

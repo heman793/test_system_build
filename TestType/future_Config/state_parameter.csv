@@ -1,0 +1,25 @@
+"TIME","NAME","VALUE"
+"2018/1/15 14:05:29","VolumeBreakthrough.zn_5min_para1","{
+    ""BarNum"": ""20"",
+    ""BarTime"": ""2018-01-15 09:06:00"",
+    ""StateTime"": ""2018-01-15 09:07:00"",
+    ""avgVolLastD"": ""10"",
+    ""barCnt"": ""8"",
+    ""currentTimeInt"": ""907"",
+    ""dollarTrailingPeakPrice"": ""0.000000"",
+    ""dollarTrailingSign"": ""0"",
+    ""downAccVol"": ""226960.000000"",
+    ""lastTradingPrice"": ""0.000000"",
+    ""lastTradingSignal"": ""NA"",
+    ""lastTradingTime"": ""not-a-date-time"",
+    ""positionCoeff"": ""1.000000"",
+    ""positionState"": ""Normal"",
+    ""priceDiffBufferStr"": ""0.000000;-4.000000;-1.000000;"",
+    ""startFlag"": ""1"",
+    ""stopLossPrice"": ""0.000000"",
+    ""stopLossSign"": ""0"",
+    ""totalVolLastD"": ""2963938.000000"",
+    ""upAccVol"": ""0.000000"",
+    ""volBufferStr"": ""1320863.000000;99637.000000;127323.000000;""
+}"
+

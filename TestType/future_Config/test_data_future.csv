@@ -1,0 +1,13 @@
+target,account_id,pf_account_id,so_name,dynamic_load_module,instance_name,strategy_name,long,short,test_case_no,expect_result
+RB,7,77,libBBreaker_strategy,BBreaker,rb_1min_para1,BBreaker_strategy,100,50,cta0001,True
+RM,7,49,libBollingerBandReversion_strategy,BollingerBandReversion,rm_5min_para1,BollingerBandReversion_strategy,60,100,cta0002,True
+SR,7,66,libBreakBandDync_strategy,BreakBandDync,SR_1min_para1,BreakBandDync_strategy,100,70,cta0003,True
+AL,7,67,libCCIMktRecg_strategy,CCIMktRecg,al_5min_para1,CCIMktRecg_strategy,80,100,cta0004,True
+HC,7,68,libCCIOsc_strategy,CCIOsc,hc_15min_para1,CCIOsc_strategy,100,90,cta0005,True
+PP,7,69,libCCIRvs_strategy,CCIRvs,pp_5min_para1,CCIRvs_strategy,110,100,cta0006,True
+M,7,70,libDonchian_strategy,Donchian,m_5min_para1,Donchian_strategy,100,108,cta0007,True
+JM,7,71,libFollowTrendDync_strategy,FollowTrendDync,jm_1min,FollowTrendDync_strategy,160,100,cta0008,True
+I,7,72,libHans_strategy,Hans,i_15min_para1,Hans_strategy,100,120,cta0009,True
+CU,7,73,libHighLowBandADX_strategy,HighLowBandADX,cu_15min_para1,HighLowBandADX_strategy,100,109,cta0010,True
+RU,7,74,libPriceVolRatio_strategy,PriceVolRatio,ru_5min_para1,PriceVolRatio_strategy,100,180,cta0011,True
+zn,7,75,libVolumeBreakthrough_strategy,VolumeBreakthrough,zn_5min_para1,VolumeBreakthrough_strategy,170,100,cta0012,True

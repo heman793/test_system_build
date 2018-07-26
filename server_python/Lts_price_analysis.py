@@ -12,6 +12,7 @@ from model.instrument import Instrument
 from tools.time_unit import CalendarUtil
 from public.main_config import platform_logger, get_log_format_string
 
+
 calendar = CalendarUtil()
 today = calendar.get_today()
 pre_trade_day = calendar.get_last_trade_day(today)
@@ -64,19 +65,26 @@ def read_position_file_lts(lts_file_path):
         elif 'OnRtnL2Index' in line:
             index_array.append(base_model)
 
-    platform_logger.info('update_fund, update sf_instrument record num: %d' % len(sf_instrument_array))
-    platform_logger.info('update_fund, update of_instrument record num: %d' % len(of_instrument_array))
+    print('update_fund, sf_instrument record num: %d')% len(sf_instrument_array)
+    print('update_fund,of_instrument record num: %d') % len(of_instrument_array)
+    # platform_logger.info('update_fund, update sf_instrument record num: %d' % len(sf_instrument_array))
+    # platform_logger.info('update_fund, update of_instrument record num: %d' % len(of_instrument_array))
     update_fund(sf_instrument_array, of_instrument_array)  # 更新分级基金的prev_nav
 
-    platform_logger.info('update_instrument_base_info, update record num: %d' % len(instrument_array))
+    # platform_logger.info('update_instrument_base_info, update record num: %d' % len(instrument_array))
+    print('update_instrument_base_info, update record num: %d')% len(instrument_array)
     update_instrument_base_info(instrument_array)
 
     # different time, different function
-    platform_logger.info('update_market, update record num: %d' % len(market_array))
+    # platform_logger.info('update_market, update record num: %d' % len(market_array))
+    print('update_market, update record num: %d') % len(market_array)
     update_market(market_array)  # 根据md行情数据更新prev_close
 
-    platform_logger.info('update_market_index, update record num: %d' % len(index_array))
+
+    # platform_logger.info('update_market_index, update record num: %d' % len(index_array))
+    print('update_market_index, update record num: %d')% len(index_array)
     update_market_index(index_array)  # 根据md的L2行情数据更新指数的prev_close
+
 
 
 # 更新分级基金pcf中PREDAYRATIO属性值
@@ -92,12 +100,14 @@ def update_structured_fund():
         (sub_ticker1, sub_ticker2) = pre_structured_fund.undl_tickers.split(';')
         sub_structured_fund = pre_structured_fund_dict[sub_ticker1]
         if sub_structured_fund.undl_tickers is None or sub_structured_fund.undl_tickers == '':
-            platform_logger.debug('sub structured fund:%s not point to index' % (sub_ticker1,))
+            # platform_logger.debug('sub structured fund:%s not point to index' % (sub_ticker1,))
+            print('Debug: sub structured fund:%s not point to index') % \
+                 sub_ticker1
             continue
 
         if sub_structured_fund.undl_tickers not in pre_index_db_dict:
-            platform_logger.debug('unfind index,ticker:%s' % (sub_structured_fund.undl_tickers,))
-
+            # platform_logger.debug('unfind index,ticker:%s' % (sub_structured_fund.undl_tickers,))
+            print('Debug: unfind index,ticker:%s') % sub_structured_fund
         pre_index_db = pre_index_db_dict[sub_structured_fund.undl_tickers]
         dict_key = '%s|%s' % (pre_index_db.ticker_exch_real, pre_index_db.exchange_id)
         index_db = instrument_exchange_db_dict[dict_key]
@@ -227,8 +237,9 @@ def update_market(message_array):
             exchange_id = 19
         dict_key = '%s|%s' % (ticker, exchange_id)
         if dict_key not in instrument_exchange_db_dict:
-            rst = 'error instrument_info key: %s' %dict_key
-            platform_logger.error(rst)
+            print ('Error: instrument_info key: %s') %dict_key
+            # rst = 'error instrument_info key: %s' %dict_key
+            # platform_logger.error(rst)
             continue
 
         instrument_db = instrument_exchange_db_dict[dict_key]
@@ -242,8 +253,9 @@ def update_market(message_array):
             instrument_db.close = getattr(messageInfo, 'ClosePrice', '')
             instrument_db.volume = getattr(messageInfo, 'Volume', '')
             instrument_db.close_update_time = datetime.now()
-        instrument_db.update_date = datetime.now()
         # print 'pre_price is %s' % instrument_db.prev_close
+        instrument_db.update_date = datetime.now()
+
 
 def update_market_index(message_array):
 
@@ -259,8 +271,9 @@ def update_market_index(message_array):
 
         dict_key = '%s|%s' % (ticker, exchange_id)
         if dict_key not in instrument_exchange_db_dict:
-            rst = 'error index_info key: %s' % dict_key
-            platform_logger.error(rst)
+            print ('Error: index_info key: %s') % dict_key
+            # rst = 'error index_info key: %s' % dict_key
+            # platform_logger.error(rst)
             continue
 
         index_db = instrument_exchange_db_dict[dict_key]
@@ -279,7 +292,7 @@ def update_db():
     for (dict_key, future) in instrument_exchange_db_dict.items():
         session.merge(future)
 
-    now_time = long(now.strftime('%H%M%S'))
+    # now_time = long(now.strftime('%H%M%S'))
     # 000974,000823的prev_close早上行情中为0，用昨日close赋值。
     # if now_time < 150500:
     update_sql = 'update common.instrument t set t.PREV_CLOSE = t.`CLOSE` where t.PREV_CLOSE = 0'
@@ -287,7 +300,8 @@ def update_db():
 
 
 def lts_price_analysis(date):
-    platform_logger.info(get_log_format_string('Enter Lts_price_analysis'))
+    # platform_logger.info(get_log_format_string('Enter Lts_price_analysis'))
+    print('Enter Lts_price_analysis')
     global session
     global filter_date_str
     date_ = '-'.join([date[:4], date[4:6], date[6:8]])
@@ -307,23 +321,28 @@ def lts_price_analysis(date):
     lts_file_list = []
     lts_file_list.extend(instrument_file_list)
     lts_file_list.extend(market_file_list)
-    platform_logger.info('taget_files: %s' % lts_file_list)
+    # platform_logger.info('taget_files: %s' % lts_file_list)
+    print ('Info: taget_files: %s') % lts_file_list
 
     for qd_file in lts_file_list:
-        platform_logger.info(get_log_format_string('Start: %s' % qd_file))
+        # platform_logger.info(get_log_format_string('Start: %s' % qd_file))
+        print ('Info: Start: %s') % qd_file
         read_position_file_lts(os.path.join(data_path, qd_file))
 
-    platform_logger.info('update_structured_fund')
+    # platform_logger.info('update_structured_fund')
+    print ('Info: update_structured_fund')
+
     update_structured_fund()
     update_db()
     session.commit()
-    platform_logger.info(get_log_format_string('Exit Lts_price_analysis'))
+    # platform_logger.info(get_log_format_string('Exit Lts_price_analysis'))
+    print('Info: Exit Lts_price_analysis')
 
 
 if __name__ == '__main__':
     options = parse_arguments()
     date_str = options.date
-    day = '20180521'
+    day = '20180713'
     lts_price_analysis(day)
     # lts_file_path = '/nas/data_share/price_files/20180521' \
     #                 '/HUABAO_INSTRUMENT_4_2018-05-21.txt'

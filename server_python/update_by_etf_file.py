@@ -403,6 +403,8 @@ def _fetch_index(index_list, index_ticker):
     update_instrument_dict[index_ticker] = index_db
 
 
+
+
 def update_by_pcf_file(date):
     platform_logger.info(get_log_format_string('Enter update_pcf_file'))
     host_server_model = ServerConstant().get_server_model('host')
@@ -420,4 +422,4 @@ def update_by_pcf_file(date):
 
 
 if __name__ == '__main__':
-    update_by_pcf_file('20180521')
+    update_by_pcf_file('20180713')

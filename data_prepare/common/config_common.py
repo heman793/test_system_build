@@ -1,6 +1,7 @@
 import pandas as pd
 from public.main_config import *
 
+
 class ConfigCommon(object):
 
     def __init__(self):
@@ -33,7 +34,9 @@ class ConfigCommon(object):
         :param target_type: 'stock', 'future' and 'option'
         :return:
         """
-        filename = 'strategy_loader_%s.csv' % test_type
+        filename = 'test_data_%s.csv' % test_type
+        strategy_config_path = os.path.join(version_path,
+                                            '%s_Config' % test_type)
         df = pd.read_csv(os.path.join(strategy_config_path, filename),
                          dtype={'target': str,'account_id': str,
                                 'pf_account_id': str}, index_col='test_case_no')
@@ -47,6 +50,12 @@ class ConfigCommon(object):
         elif test_type == 'all':
             return df
 
+    def get_target_pre_price(self, ticker):
+        sql_command = "select prev_close, ticker from instrument "
+        df = pd.read_sql_query(sql_command, con=get_conn_db("common"),
+                            index_col='ticker')
+        pre_close = df.at[ticker, 'prev_close']
+        return pre_close
 
     @staticmethod
     def get_strategy_so_df():
@@ -92,5 +101,5 @@ class ConfigCommon(object):
 
 if __name__ =='__main__':
     common_cfg = ConfigCommon()
-    data = common_cfg.get_strategy_loader_df(test_type='all')
-    print data
+    data = common_cfg.get_strategy_loader_df(test_type='future')
+    # print data

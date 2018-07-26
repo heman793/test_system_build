@@ -267,7 +267,7 @@ message KeyValuePair_String_Dictionary_UInt32_InstrumentPosition {
    optional string Key = 1;
    repeated KeyValuePair_UInt32_InstrumentPosition Value = 2;
 }
-message KeyValuePair_String_String {
+message StrategyParameterChangeRequest {
    optional string Key = 1;
    optional string Value = 2;
 }

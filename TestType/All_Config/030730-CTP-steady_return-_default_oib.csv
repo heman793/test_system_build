@@ -1,0 +1,3 @@
+target,trade_type,type,direction,order_qty,clientid,expect_result
+rb1810,2,2,1,10,oib0001,True
+al1810,2,2,1,100,oib0002,True

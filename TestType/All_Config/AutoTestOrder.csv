@@ -2,5 +2,4 @@ order,app_name,platform
 1,MainFrame,Linux
 2,AlgoFrame,Linux
 3,MktDTCenter,Linux
-4,MktUDPSvr,Linux
-5,OrdUDP,Linux
+4,OrdUDP,Linux

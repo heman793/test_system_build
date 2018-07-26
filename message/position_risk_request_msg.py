@@ -1,16 +1,11 @@
 # -*- coding: utf-8 -*-
 
 import six
-import zmq
 import AllProtoMsg_pb2
-from public.main_config import *
+from socket_init import socket_init
 
 def position_risk_request():
-    context = zmq.Context().instance()
-    print "Connecting to server"
-    socket = context.socket(zmq.DEALER)
-    socket.setsockopt(zmq.IDENTITY, b'127.0.0.1_real')
-    socket.connect(socket_connect_dict)
+    socket = socket_init()
 
     # 拼消息
     msg_position_risk_request = AllProtoMsg_pb2.PositionRiskRequestMsg()

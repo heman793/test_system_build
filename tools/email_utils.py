@@ -10,12 +10,10 @@ todayStr = now.strftime('%Y_%m_%d')
 
 class EmailUtils:
     sender = 'yseod@derivatives-china.com'
-    receiver = ['zy@derivatives-china.com', 'yangzhoujie@derivatives-china.com', 'chengqi@derivatives-china.com',
-                'zhoumingshan@derivatives-china.com', 'jinchengxun@derivatives-china.com']  # 接收者邮箱
-    operation_receiver = ['yangzhoujie@derivatives-china.com', 'jinchengxun@derivatives-china.com', 'chengqi@derivatives-china.com']
-    group1_receiver = ['yangzhoujie@derivatives-china.com', 'jinchengxun@derivatives-china.com',
-                       'zy@derivatives-china.com', 'yaojunfei@derivatives-china.com', 'chengqi@derivatives-china.com']
-    # operation_receiver = ['yangzhoujie@derivatives-china.com',]
+    receiver = ['liuqiuxia@derivatives-china.com']  # 接收者邮箱
+    operation_receiver = ['liuqiuxia@derivatives-china.com']
+    group1_receiver = ['liuqiuxia@derivatives-china.com']
+
     smtpserver = 'smtp.exmail.qq.com'
     username = 'yseod@derivatives-china.com'
     password = 'Yan1sheng'

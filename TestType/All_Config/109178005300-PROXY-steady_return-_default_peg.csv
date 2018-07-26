@@ -1,0 +1,3 @@
+target,trade_type,type,direction,order_qty,clientid,expect_result
+600000,0,2,1,400,peg0001,True
+000001,0,2,-1,100,peg0002,True

@@ -1,0 +1,13 @@
+account_id,pf_account_id,dynamic_load_module,instance_name
+7,77,BBreaker,rb_1min_para1
+7,49,BollingerBandReversion,rm_5min_para1
+7,66,BreakBandDync,SR_1min_para1
+7,67,CCIMktRecg,al_5min_para1
+7,68,CCIOsc,hc_15min_para1
+7,69,CCIRvs,pp_5min_para1
+7,70,Donchian,m_5min_para1
+7,71,FollowTrendDync,jm_1min
+7,72,Hans,i_15min_para1
+7,73,HighLowBandADX,cu_15min_para1
+7,74,PriceVolRatio,ru_5min_para1
+7,75,VolumeBreakthrough,zn_5min_para1

@@ -4,6 +4,7 @@ from data_prepare.common.config_common import ConfigCommon
 from ysdata.future_info import get_platform_name
 from ysdata.data_info import FutureData
 from tools.date_utils import *
+import sys
 
 class DataPrepare_L1(ConfigCommon):
     def __init__(self):
@@ -56,7 +57,7 @@ class DataPrepare_L1(ConfigCommon):
 
     def write_all_data_ini_process(self, data_dat_list):
         [secur_dat] = data_dat_list
-        # print [secur_dat]
+        print [secur_dat]
         dict_ = self.ini_input_dict
        # mktcenter_all_ini
         dict_['import_file'] = secur_dat
@@ -117,18 +118,17 @@ class DataPrepare_L1(ConfigCommon):
     def start_all_data_preparation(self, date, component_list):
         test_type = 'all'
         self.get_level1_data_from_nas(date)
-        # self.write_all_component_config(date, component_list, test_type)
+        self.write_all_component_config(date, component_list, test_type)
 
         # write congif_mktcenter_all.ini
         src_data_dat = self.get_level1_data_from_nas(date)
         secur_dat = os.path.join(test_data_path, 'security_mktdt_%s.dat' %
                                    date)
         data_dat_list = [secur_dat]
-        # mktcenter_all_ini = self.write_all_data_ini_process(data_dat_list)
-        # print mktcenter_all_ini
+        self.write_all_data_ini_process(data_dat_list)
+
 
 if __name__ == "__main__":
-    date = '20180521'
+    # date = '20180713'
     data_prepare = DataPrepare_L1()
-    data_prepare.start_all_data_preparation(date,{'mainframe','ordudp',
-                                                  'mktdtcenter'})
+    data_prepare.start_all_data_preparation(sys.argv[1], sys.argv[2])

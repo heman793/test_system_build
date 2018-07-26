@@ -117,7 +117,7 @@ def query_order_list(clientid):
         else:
             child2_view_list.append(order_view)
             # print '--- child2_view_list is %s' % order_view.id
-    print parent_view_list, child1_view_list, child2_view_list
+    # print parent_view_list, child1_view_list, child2_view_list
     return parent_view_list, child1_view_list, child2_view_list
 
 
@@ -130,7 +130,7 @@ def query_parent_id_by_clientid(clientid):
             parentid = order_view.parent_order_id
             parent_id_listA.append(parentid)
     parent_id_listB = list(set(parent_id_listA))
-    print parent_id_listB
+    # print parent_id_listB
     return parent_id_listB
 
 def query_child_list_by_parentid(parentid):
@@ -141,7 +141,7 @@ def query_child_list_by_parentid(parentid):
         if order_view.parent_order_id == parentid:
             ticker = order_view.ticker
             trade_qty += order_view.ext_qty
-    print trade_qty, ticker, parentid
+    # print trade_qty, ticker, parentid
     return trade_qty
 
 # def query_all_child_trade_qty(clientid):

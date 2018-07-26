@@ -3,7 +3,9 @@
 from message.order_info_request_msg import *
 from model.eod_const import const, CustomEnumUtils
 from tools.date_utils import DateUtils
-from message.cancel_order_msg import *
+from random import randint
+import time
+
 date_utils = DateUtils()
 
 custom_enum_utils = CustomEnumUtils()
@@ -55,6 +57,7 @@ class OrderView:
     parent_order_id = None
     order_type = 0
     cliordid = None
+    algo_status = None
 
 def __init__(self):
     pass
@@ -87,20 +90,18 @@ def __query_order_list():
         order_item_dict['TradeType'] = order_msg.Order.TradeTypeWire
         order_item_dict['NominalTradeType'] = order_msg.Order.NominalTradeTypeWire
         query_order_list.append(order_item_dict)
-    print query_order_list
     return query_order_list
 
 
 def query_order_by_clientid(clientid=None):
     order_list = __query_order_list()
     order_client_list = []
-    # print order_list
     for order_item in order_list:
         if order_item['CliOrdID'] == clientid:
             order_client_list.append(order_item)
-            # print order_client_list
         else:
             exit
+    # print order_client_list
     return order_client_list
 
 def query_orderid_by_clientid(clientid=None):
@@ -110,7 +111,6 @@ def query_orderid_by_clientid(clientid=None):
             order_id = order_item['OrderID']
         else:
             exit
-    # print order_id
     return order_id
 
 def query_orderid_by_parentid(clientid=None):
@@ -120,7 +120,6 @@ def query_orderid_by_parentid(clientid=None):
             parent_order_id = order_item['ParentOrderID']
         else:
             exit
-    print parent_order_id
     return parent_order_id
 
 def query_need_cancel_orders():
@@ -131,18 +130,35 @@ def query_need_cancel_orders():
             need_cancel_list.append(order_item)
     return need_cancel_list
 
+def cancel_order_msg(clientid=None):
+    context = zmq.Context().instance()
+    socket = context.socket(zmq.DEALER)
+    socket.setsockopt(zmq.IDENTITY, bytes(randint(10000000, 999999999)))
+    socket.setsockopt(zmq.LINGER, 0)
+    socket.connect(socket_connect_dict)
 
-def cancel_all_msg(self):
+    msg = AllProtoMsg_pb2.CancelOrderMsg()
+    msg.SysOrdID = query_orderid_by_clientid(clientid)
+    msg_str = msg.SerializeToString()
+    msg_type = 5
+    msg_list = [six.int2byte(msg_type), msg_str]
+    socket.send_multipart(msg_list)
+    time.sleep(1)
+    socket.close()
+    context.term()
+
+def cancel_all_msg():
     need_cancel_list = query_need_cancel_orders()
     for order_item in need_cancel_list:
-        cancel_order_message(self, order_item['OrderID'])
+        cancel_order_msg(order_item['CliOrdID'])
 
 if __name__ == '__main__':
-    clientid = 'ag0001'
+    clientid = 'ts0005'
     order_view = OrderView()
-    order_list = query_order_by_clientid(clientid)
-    # order_id = query_orderid_by_clientid(clientid='ts0001')
+    # cancel_order_msg(clientid)
+    # order_list = query_order_by_clientid(clientid)
+    # order_id = query_orderid_by_clientid(clientid)
     # cancel_all_msg(self='self')
     # query_need_cancel_orders()
-    # query_order_by_clientid(clientid)
+    query_order_by_clientid(clientid)
     # query_orderid_by_parentid(clientid)

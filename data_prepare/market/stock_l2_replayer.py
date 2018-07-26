@@ -2,9 +2,8 @@ import pandas as pd
 import shutil
 from public.main_config import *
 from data_prepare.common.config_common import ConfigCommon
-from ysdata.future_info import get_platform_name
-from ysdata.data_info import FutureData
-from tools.date_utils import *
+import sys
+from data_prepare.init_sql.strategy_para_stock import Strategy_para
 
 # strategy_loader_header_name
 dll_loading_module_name_var = 'dynamic_load_module'
@@ -252,9 +251,13 @@ class DataPrepare_L2(ConfigCommon):
         self.run_ini_create_program(build_ini)
         map(lambda file_path: file_logger.info(file_path), data_dat_list)
 
+        # insert strategy_parameters
+        Strategy_para().start_init_process(test_type='stock')
+
 if __name__ == '__main__':
-    day = '20180323'
+    # day = '20180713'
     data_prepare = DataPrepare_L2()
-    data_prepare.start_stock_data_preparation(day, {'mktdtcenter',
-                                                    'strategyloader',
-                                                    'hfcalculator'})
+    # data_prepare.start_stock_data_preparation(day, {'mktdtcenter',
+    #                                                 'strategyloader',
+    #                                                 'hfcalculator'})
+    data_prepare.start_stock_data_preparation(sys.argv[1], sys.argv[2])

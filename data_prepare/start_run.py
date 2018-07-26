@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
 import time
+import sys
 
 import multiprocessing
 from xmlrpclib import ServerProxy
@@ -25,7 +26,9 @@ class AutoTestUnit(object):
         pass
 
     @staticmethod
-    def get_running_order(filename='AutoTestOrder.csv'):
+    def get_running_order(test_type, filename='AutoTestOrder.csv'):
+        strategy_config_path = os.path.join(version_path,
+                                            '%s_Config' % test_type)
         df = pd.read_csv(os.path.join(strategy_config_path, filename))
         # for [app_name, platform_id] in order_list:
         #     print app_name, platform_id
@@ -94,11 +97,11 @@ class AutoTestUnit(object):
         # process.start()
         # windows_connect.run_exe('VirtualExchange')
 
-    def start_up_component(self):
+    def start_up_component(self, test_type):
         global pool
         pool = multiprocessing.Pool(processes=3)
 
-        df_run_order = self.get_running_order()
+        df_run_order = self.get_running_order(test_type)
         order_list = np.array(df_run_order[['platform', 'app_name']]).tolist()
 
         for [platform_id, app_name] in order_list:
@@ -126,8 +129,7 @@ class AutoTestUnit(object):
         pool.close()
 
     def start_run(self, date, test_type):
-
-        df_run_order = self.get_running_order()
+        df_run_order = self.get_running_order(test_type)
         df_linux = df_run_order[df_run_order['platform'] == 'Linux']
         component_list = [x.lower() for x in df_linux['app_name']]
         write_script_from_template()
@@ -143,14 +145,15 @@ class AutoTestUnit(object):
             DataPrepare_cta().start_future_data_preparation(date, component_list)
 
         # start each component
-        self.start_up_component()
+        self.start_up_component(test_type)
 
-        # start backtest
 
 if __name__ == '__main__':
-        day = '20180521'
-        test_type = 'all'
+        # date = '20180713'
+        # test_type = 'future'
         db_unit = DataBaseUnit()
         db_prepare = DataPrepare_L1()
         start_run = AutoTestUnit()
-        start_run.start_run(day, test_type)
+        start_run.start_run(sys.argv[1], sys.argv[2])
+        # start_run.start_run(date, test_type)
+        # start_run.start_up_component()

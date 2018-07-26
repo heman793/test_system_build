@@ -5,13 +5,10 @@ import zmq
 import AllProtoMsg_pb2
 from public.main_config import *
 import zlib
+from socket_init import socket_init
 
 def order_status_subscribe_msg():
-    context = zmq.Context().instance()
-    print "Connecting to server"
-    socket = context.socket(zmq.DEALER)
-    socket.setsockopt(zmq.IDENTITY, b'127.0.0.1_real')
-    socket.connect(socket_connect_dict)
+    socket = socket_init()
     # 拼消息
     msg_order_info_request = AllProtoMsg_pb2.OrderInfoRequestMsg()
     msg_order_info_request.IsAll = False

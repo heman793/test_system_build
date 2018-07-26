@@ -3,25 +3,19 @@ import zmq
 from tools.date_utils import DateUtils
 from public.main_config import *
 import logging.config
-import time
+from random import randint
 
 task_logger = logging.getLogger('task')
 date_utils = DateUtils()
 
+
 def socket_init():
-    context = zmq.Context()
-    task_logger.info("Connecting to server:%s", socket_connect_dict)
-    socket = context.socket(zmq.REP)
+    context = zmq.Context().instance()
+    socket = context.socket(zmq.DEALER)
+    socket.setsockopt(zmq.IDENTITY, bytes(randint(10000000, 999999999)))
+    socket.setsockopt(zmq.LINGER, 0)
     socket.connect(socket_connect_dict)
 
-    while True:
-        message = socket.recv()
-        print 'receive request: ', message
-        time.sleep(1)
-        if message == 'hello':
-            socket.send('World')
-        else:
-            socket.send('success')
 
 if __name__ == '__main__':
     socket_init()

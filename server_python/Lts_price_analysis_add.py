@@ -11,7 +11,7 @@ from tools.getConfig import getConfig
 from model.instrument import Instrument
 from tools.file_utils import FileUtils
 from model.eod_parse_arguments import parse_arguments
-from public.main_config import platform_logger, get_log_format_string
+# from public.main_config import platform_logger, get_log_format_string
 reload(sys)
 sys.setdefaultencoding('utf8')
 
@@ -57,15 +57,17 @@ def read_position_file_lts(lts_file_path):
     structured_fund_undl_ticker(sf_instrument_array)
     add_structured_fund(structured_fund_array)
 
-    platform_logger.info('add_option, update record num: %d' % len(option_array))
-    # print '--**--'
+    # platform_logger.info('add_option, update record num: %d' % len(option_array))
+    print ('add_option, update record num: %d') % len(option_array)
     add_option(option_array)  # 新增期权
     # print '**--**'
 
-    platform_logger.info('add_stock, update record num: %d' % len(stock_array))
+    # platform_logger.info('add_stock, update record num: %d' % len(stock_array))
+    print('add_stock, update record num: %d') % len(stock_array)
     add_stock(stock_array)  # 更新股票停牌日期数据和新增股票
 
-    platform_logger.info('add_mmf_fund, update record num: %d' % len(mmf_fund_array))
+    # platform_logger.info('add_mmf_fund, update record num: %d' % len(mmf_fund_array))
+    print ('add_mmf_fund, update record num: %d') % len(mmf_fund_array)
     add_mmf_fund(mmf_fund_array)  # 新增货币基金
 
 
@@ -215,6 +217,7 @@ def add_structured_fund(message_array):
         structured_fund_db.shortmarginratio_arbitrage = structured_fund_db.shortmarginratio
         structured_fund_db.multiplier = 1
         instrument_insert_list.append(structured_fund_db)
+        # print instrument_insert_list
         print 'prepare insert structured fund:', ticker
 
 
@@ -363,8 +366,8 @@ def add_stock(message_array):
 
 
 def build_instrument_db_dict():
-    # host_server_model = server_constant.get_server_model('host')
-    # session = host_server_model.get_db_session('common')
+    host_server_model = server_constant.get_server_model('host')
+    session = host_server_model.get_db_session('common')
     query = session.query(Instrument)
 
     for future in query.filter(Instrument.exchange_id.in_((18, 19, 13))):
@@ -392,7 +395,8 @@ def insert_server_db():
 
 
 def lts_price_analysis_add(date):
-    platform_logger.info(get_log_format_string('Enter Lts_price_analysis_add'))
+    # platform_logger.info(get_log_format_string('Enter Lts_price_analysis_add'))
+    print ('Info: Enter Lts_price_analysis_add')
     global session
     global filter_date_str
 
@@ -410,15 +414,17 @@ def lts_price_analysis_add(date):
 
     instrument_file_list = FileUtils(data_path).filter_file('HUABAO_INSTRUMENT', filter_date_str)
 
-    platform_logger.info('target_files: %s' % instrument_file_list)
+    # platform_logger.info('target_files: %s' % instrument_file_list)
+    print ('target_files: %s')% instrument_file_list
     for qd_file in instrument_file_list:
-        platform_logger.info(get_log_format_string('Start: %s' % qd_file, '-'))
+        # platform_logger.info(get_log_format_string('Start: %s' % qd_file, '-'))
+        print ('Start: %s') % qd_file
         read_position_file_lts(os.path.join(data_path, qd_file))
     session.commit()
     insert_server_db()
 
-    platform_logger.info(get_log_format_string('Exit Lts_price_analysis_add'))
-
+    # platform_logger.info(get_log_format_string('Exit Lts_price_analysis_add'))
+    print ('Exit Lts_price_analysis_add')
 
 if __name__ == '__main__':
     options = parse_arguments()
@@ -428,5 +434,5 @@ if __name__ == '__main__':
     else:
         day = datetime.now().strftime('%Y%m%d')
 
-    day = '20180521'
+    day = '20180713'
     lts_price_analysis_add(day)
