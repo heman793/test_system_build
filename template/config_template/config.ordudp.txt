@@ -1,0 +1,29 @@
+[Global]
+SqlAddress=%s
+SqlUser=%s
+SqlPassword=%s
+SqlPort = 3306
+WatchListName = shsz300 arb;cg etf;cs etf;cg option;cg commonstock;cs commonstock
+Filter = any,any
+AutoLoadRelated = true
+OnlyLoadActive = false
+IsQueryOrder = false
+IsQueryAccount = true
+ControlServerRefreshInterval = 10
+OrderThreadInterval = 0
+AlgoThreadInterval = 0
+StrategyThreadInterval = 0
+
+[OrderRoute.MyUDP]
+IsEnable = true
+Address = 172.16.11.180
+# ======================  ????????????????  sql real account ?????? ===========================================
+Port = 18001
+Accounts = *
+#Accounts = 01234567-VIRTUAL-TEST-01;01234567-VIRTUAL-TEST-70
+Filter = any,any
+SelfMatch = true
+VolumeNew=300
+VolumeMultipleFilled=500,200,300
+VolumePartialFilled=100,200,400
+

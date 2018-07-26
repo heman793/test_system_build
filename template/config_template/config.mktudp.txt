@@ -1,0 +1,28 @@
+[Global]
+SqlAddress=%s
+SqlUser=%s
+SqlPassword=%s
+SqlPort=3306
+#WatchListName = shsz300 arb;cg etf;cs etf;cg option;cg commonstock;cs commonstock
+WatchListName = 510050OPTION 
+Filter = any,any
+AutoLoadRelated = true
+OnlyLoadActive = false
+IsQueryOrder = false
+IsQueryAccount = true
+ControlServerRefreshInterval = 10
+OrderThreadInterval = 0
+AlgoThreadInterval = 0
+StrategyThreadInterval = 0
+
+#[DataSource.MyUDP]
+#IsEnable = true
+#Address = 192.168.1.103
+#Port = 19001
+#Filter = any,any
+
+[DataSource.MyUDP]
+IsEnable = true
+Address = 172.16.11.180
+Port = 19001
+Filter = any,any

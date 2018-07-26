@@ -1,0 +1,16 @@
+# if you want to rename this file, you should modify eod_aps/tools/getConfig.py
+server_name=66_QA
+
+host=119.23.111.2
+
+db_port=3306
+
+db_user=root
+
+db_password=rootP@ssw0rd
+
+datafetcher_file_path=/nas/data_share/price_files
+
+etf_file_path=/nas/data_share/index_weight
+
+update_server=host

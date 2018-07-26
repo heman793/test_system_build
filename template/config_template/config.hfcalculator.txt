@@ -1,0 +1,26 @@
+[Global]
+SqlAddress=%s
+SqlUser=%s
+SqlPassword=%s
+SqlPort = 3306
+WatchListName = instrument_all
+Filter = any,any
+AutoLoadRelated = true
+OnlyLoadActive = false
+IsQueryOrder = false
+IsQueryAccount = true
+ControlServerRefreshInterval = 5
+OrderThreadInterval = 0
+AlgoThreadInterval = 0
+StrategyThreadInterval = 0
+
+[HFCalculator]
+Instruments=%s
+Dependencys =
+InstrumentsGroupSize = 100
+DependencysGroupSize = 200
+StartSampleTickTime = 09:30:00.000
+LeadLagMaxDelaySeconds = 100
+FactorConfigPath = ./cfg
+Test = 1
+Interval = 50

@@ -1,0 +1,23 @@
+[Global]
+SqlAddress=%s
+SqlUser=%s
+SqlPassword=%s
+SqlPort = 3306
+WatchListName = instrument_all
+Filter = any,any
+AutoLoadRelated = true
+OnlyLoadActive = true
+
+ControlPort=%s
+
+IsQueryOrder = false
+IsQueryAccount = false
+
+ControlServerRefreshInterval = 10
+
+BarEndAdvanceTime = 15
+
+LoadHistoricalDataBars = false
+LoadHistoricalDataQuotes = false
+HistoricalDataPath = /home/trader/history_data
+HistoricalDataExchangeList = dce;shf;zce

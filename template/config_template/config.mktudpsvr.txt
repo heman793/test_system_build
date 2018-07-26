@@ -1,0 +1,26 @@
+[Global]
+SharedMemoryName = MainShared
+SqlAddress=%s
+SqlUser=%s
+SqlPassword=%s
+SqlPort=3306
+PublishPort = 19015
+
+#WatchListName = shsz300 arb;cg etf;cs etf;cs mmf;cg mmf;cg commonstock;cs commonstock;cg structured fund;tf future;t future;cu future;m future;sr future
+#WatchListName = cu future;tf future;t future;cff future;cs commonstock
+#WatchListName = tf future;t future
+WatchListName = instrument_all
+Filter = any,any
+AutoLoadRelated = true
+OnlyLoadActive = false
+IsQueryOrder = false
+IsQueryAccount = false
+ControlServerRefreshInterval = 10
+ControlPort =17011
+OrderThreadInterval = 0
+AlgoThreadInterval = 0
+StrategyThreadInterval = 0
+
+[MktUDPSvr]
+PublishPort = 19015
+MinQuoteInterval = 1000

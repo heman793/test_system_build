@@ -1,0 +1,7 @@
+order,app_name,platform
+1,MainFrame,Linux
+2,AlgoFrame,Linux
+3,HFcalculator,Linux
+4,StrategyLoader,Linux
+5,OrdUDP,Linux
+6,MktdtCenter,Linux

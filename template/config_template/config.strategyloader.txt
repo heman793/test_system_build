@@ -1,0 +1,386 @@
+[Global]
+SqlAddress=%s
+SqlUser=%s
+SqlPassword=%s
+SqlPort=3306
+
+WatchListName = shsz300 arb;global future
+Filter = cff,any;hkg,any
+AutoLoadRelated = true
+OnlyLoadActive = false
+
+StrategyThreadInterval = 0
+
+IsLoadStrategyPositionFromDB = true
+
+IsQueryOrder = false
+IsQueryAccount = false
+
+ControlServerRefreshInterval = 10
+
+LoadStrategyFromDB = false
+
+UseSharedLibrary = true
+StratsLibFolder = strategy_library
+# ======================== 118:/home/trader/apps/TradePlat/  ln file============================
+
+#[Strategy.libPriceVolRatio_strategy.PriceVolRatio.rb_1min_para1]
+#WatchList = rb1801
+
+#[Strategy.libBollingerBandReversion_strategy.BollingerBandReversion.rb_5min_para1]
+#WatchList = rb1710
+
+#[Strategy.libFollowTrendIntraDay_strategy.FollowTrendIntraDay.rb_1min]
+#WatchList = rb1710
+#
+#[Strategy.libHighLowBand_strategy.HighLowBand.rb_1min]
+#WatchList = rb1710
+#
+#[Strategy.libHighLowBandIntraDay_strategy.HighLowBandIntraDay.rb_1min]
+#WatchList = rb1710
+#
+#
+[Strategy.libstk_intra_day_strategy.StkIntraDayLeadLag.container1]
+WatchList = 300295
+ParaList =  
+#
+#[Strategy.libstk_intra_day_strategy.StkIntraDayLeadLag.container2]
+#WatchList = 600340
+#ParaList =  
+#
+#[Strategy.libAMACD_strategy.AMACD.al_5min_para1_1]
+#WatchList = al1708
+#
+#[Strategy.libAMACD_strategy.AMACD.al_5min_para2_1]
+#WatchList = al1708
+#
+#[Strategy.libAMACD_strategy.AMACD.al_5min_para2_3]
+#WatchList = al1708
+#
+#[Strategy.libAMACD_strategy.AMACD.i_5min_para1_2]
+#WatchList = i1709
+#
+#[Strategy.libAMACD_strategy.AMACD.i_5min_para1_3]
+#WatchList = i1709
+#
+#[Strategy.libAMACD_strategy.AMACD.ma_5min_para1_1]
+#WatchList = MA709
+#
+#[Strategy.libAMACD_strategy.AMACD.ma_5min_para2_1]
+#WatchList = MA709
+#
+#[Strategy.libAMACD_strategy.AMACD.rb_1min_para1_1]
+#WatchList = rb1710
+#
+#[Strategy.libAMACD_strategy.AMACD.rb_5min_para1_6]
+#WatchList = rb1710
+#
+#[Strategy.libAMACD_strategy.AMACD.rb_5min_para2_1]
+#WatchList = rb1710
+#
+#[Strategy.libAMACD_strategy.AMACD.rb_5min_para2_2]
+#WatchList = rb1710
+#
+#[Strategy.libAMASkew_strategy.AMASkew.rb_5min_para1]
+#WatchList = rb1710
+#
+#[Strategy.libbreakband_strategy.BreakBand.fg_15min_para1]
+#WatchList = FG709
+#
+#[Strategy.libbreakband_strategy.BreakBand.hc_15min_para1]
+#WatchList = hc1710
+#
+#[Strategy.libbreakband_strategy.BreakBand.i_15min_para1]
+#WatchList = i1709
+#
+#[Strategy.libbreakband_strategy.BreakBand.j_5min_para1]
+#WatchList = j1709
+#
+#[Strategy.libbreakband_strategy.BreakBand.l_5min_para1]
+#WatchList = l1709
+#
+#[Strategy.libbreakband_strategy.BreakBand.rb]
+#WatchList = rb1710
+#
+#[Strategy.libbreakband_strategy.BreakBand.sm_5min_para1]
+#WatchList = SM709
+#
+#[Strategy.libbreakband_strategy.BreakBand.tf_15min_para1]
+#WatchList = TF1709
+#
+#[Strategy.libbreakband_strategy.BreakBand.t_15min_para1]
+#WatchList = T1709
+#
+#[Strategy.libbreakband_strategy.BreakBand.t_5min_para1]
+#WatchList = T1709
+#
+#[Strategy.libbreakband_strategy.BreakBand.v_15min_para1]
+#WatchList = v1709
+#
+#[Strategy.libbreakbandinbar_strategy.BreakBandInBar.rb]
+#WatchList = rb1710
+#
+#[Strategy.libCCI_strategy.CCI.hc_15min_para1]
+#WatchList = hc1710
+#
+#[Strategy.libCCI_strategy.CCI.i_15min_para1]
+#WatchList = i1709
+#
+#[Strategy.libCCI_strategy.CCI.i_15min_para2]
+#WatchList = i1709
+#
+#[Strategy.libCCI_strategy.CCI.pp_5min_para1]
+#WatchList = pp1709
+#
+#[Strategy.libCCI_strategy.CCI.rm_15min_para1]
+#WatchList = RM709
+#
+#[Strategy.libCCI_strategy.CCI.rm_30min_para1]
+#WatchList = RM709
+#
+#[Strategy.libCCI_strategy.CCI.sm_5min_para1]
+#WatchList = SM709
+#
+#[Strategy.libCCI_strategy.CCI.v_30min_para1]
+#WatchList = v1709
+#
+#[Strategy.libCCI_strategy.CCI.zn_30min_para1]
+#WatchList = zn1708
+#
+#[Strategy.libChannelBreak_strategy.ChannelBreak.rb_5min_para1]
+#WatchList = rb1710
+#
+#[Strategy.libChannelBreak_strategy.ChannelBreak.rb_5min_para2]
+#WatchList = rb1710
+#
+#[Strategy.libDMIdiverge_strategy.DMIdiverge.rb]
+#WatchList = rb1710
+#
+#[Strategy.libEMABollinger_strategy.EMABollinger.rb_5min_para1]
+#WatchList = rb1710
+#
+#[Strategy.libFollowTrend_strategy.FollowTrend.bu_5min_para1]
+#WatchList = bu1709
+#
+#[Strategy.libFollowTrend_strategy.FollowTrend.hc_5min_para1]
+#WatchList = hc1710
+#
+#[Strategy.libFollowTrend_strategy.FollowTrend.hc_5min_para2]
+#WatchList = hc1710
+#
+#[Strategy.libFollowTrend_strategy.FollowTrend.i_5min_para1]
+#WatchList = i1709
+#
+#[Strategy.libFollowTrend_strategy.FollowTrend.l_5min_para1]
+#WatchList = l1709
+#
+#[Strategy.libFollowTrend_strategy.FollowTrend.ni_5min_para1]
+#WatchList = ni1709
+#
+#[Strategy.libFollowTrend_strategy.FollowTrend.rb_5min_para1]
+#WatchList = rb1710
+#
+#[Strategy.libFollowTrend_strategy.FollowTrend.rb_5min_para2]
+#WatchList = rb1710
+#
+#[Strategy.libFollowTrend_strategy.FollowTrend.sm_5min_para1]
+#WatchList = SM709
+#
+#[Strategy.libFollowTrend_strategy.FollowTrend.sn_5min_para1]
+#WatchList = sn1709
+#
+#[Strategy.libFollowTrend_strategy.FollowTrend.t_5min_para1]
+#WatchList = T1709
+#
+#[Strategy.libLinearRegSlope_strategy.LinearRegSlope.hc_5min_para1]
+#WatchList = hc1710
+#
+#[Strategy.libLinearRegSlope_strategy.LinearRegSlope.i_15min_para4]
+#WatchList = i1709
+#
+#[Strategy.libLinearRegSlope_strategy.LinearRegSlope.i_5min_para1]
+#WatchList = i1709
+#
+#[Strategy.libLinearRegSlope_strategy.LinearRegSlope.j]
+#WatchList = j1709
+#
+#[Strategy.libLinearRegSlope_strategy.LinearRegSlope.ma_15min_para1]
+#WatchList = MA709
+#
+#[Strategy.libLinearRegSlope_strategy.LinearRegSlope.pp_15min_para1]
+#WatchList = pp1709
+#
+#[Strategy.libLinearRegSlope_strategy.LinearRegSlope.rb_15min_para1]
+#WatchList = rb1710
+#
+#[Strategy.libLinearRegSlope_strategy.LinearRegSlope.rb_15min_para2]
+#WatchList = rb1710
+#
+#[Strategy.libLinearRegSlope_strategy.LinearRegSlope.rb_1min_para1]
+#WatchList = rb1710
+#
+#[Strategy.libLinearRegSlope_strategy.LinearRegSlope.rb_1min_para2]
+#WatchList = rb1710
+#
+#[Strategy.libLinearRegSlope_strategy.LinearRegSlope.rb_30min_para1]
+#WatchList = rb1710
+#
+#[Strategy.libLinearRegSlope_strategy.LinearRegSlope.rb_5min_para1]
+#WatchList = rb1710
+#
+#[Strategy.libLinearRegSlope_strategy.LinearRegSlope.rb_5min_para2]
+#WatchList = rb1710
+#
+#[Strategy.libLinearRegSlope_strategy.LinearRegSlope.sm_5min_para1]
+#WatchList = SM709
+#
+#[Strategy.libLinearRegSlope_strategy.LinearRegSlope.sn_15min_para1]
+#WatchList = sn1709
+#
+#[Strategy.libLinearRegSlope_strategy.LinearRegSlope.zc_5min_para1]
+#WatchList = ZC709
+#
+#[Strategy.libnarrowbandbreak_strategy.NarrowBandBreak.ag_15min]
+#WatchList = ag1712
+#
+#[Strategy.libnarrowbandbreak_strategy.NarrowBandBreak.ag_5min]
+#WatchList = ag1712
+#
+#[Strategy.libnarrowbandbreak_strategy.NarrowBandBreak.al_15min_para1]
+#WatchList = al1708
+#
+#[Strategy.libnarrowbandbreak_strategy.NarrowBandBreak.bu_15min_para1]
+#WatchList = bu1709
+#
+#[Strategy.libnarrowbandbreak_strategy.NarrowBandBreak.IH_5min]
+#WatchList = IH1706
+#
+#[Strategy.libnarrowbandbreak_strategy.NarrowBandBreak.i_15min]
+#WatchList = i1709
+#
+#[Strategy.libnarrowbandbreak_strategy.NarrowBandBreak.i_5min]
+#WatchList = i1709
+#
+#[Strategy.libnarrowbandbreak_strategy.NarrowBandBreak.l_15min_para1]
+#WatchList = l1709
+#
+#[Strategy.libnarrowbandbreak_strategy.NarrowBandBreak.ma_5min_para1]
+#WatchList = MA709
+#
+#[Strategy.libnarrowbandbreak_strategy.NarrowBandBreak.m_5min]
+#WatchList = m1709
+#
+#[Strategy.libnarrowbandbreak_strategy.NarrowBandBreak.ni_5min_para1]
+#WatchList = ni1709
+#
+#[Strategy.libnarrowbandbreak_strategy.NarrowBandBreak.rb_5min]
+#WatchList = rb1710
+#
+#[Strategy.libnarrowbandbreak_strategy.NarrowBandBreak.rm_15min_para1]
+#WatchList = RM709
+#
+#[Strategy.libnarrowbandbreak_strategy.NarrowBandBreak.ru_15min_para1]
+#WatchList = ru1709
+#
+#[Strategy.libnarrowbandbreak_strategy.NarrowBandBreak.sn_15min_para1]
+#WatchList = sn1709
+#
+#[Strategy.libnarrowbandbreak_strategy.NarrowBandBreak.tf_15min]
+#WatchList = TF1709
+#
+#[Strategy.libnarrowbandbreak_strategy.NarrowBandBreak.tf_5min]
+#WatchList = TF1709
+#
+#[Strategy.libnarrowbandbreak_strategy.NarrowBandBreak.t_5min]
+#WatchList = T1709
+#
+#[Strategy.libnarrowbandbreak_strategy.NarrowBandBreak.v_5min_para1]
+#WatchList = v1709
+#
+#[Strategy.libnarrow_sd_strategy.Narrow_SD.i]
+#WatchList = i1709
+#
+#[Strategy.libnarrow_sd_strategy.Narrow_SD.ma]
+#WatchList = MA709
+#
+#[Strategy.libnarrow_sd_strategy.Narrow_SD.ni]
+#WatchList = ni1709
+#
+#[Strategy.libnarrow_sd_strategy.Narrow_SD.p]
+#WatchList = p1709
+#
+#[Strategy.libnarrow_sd_strategy.Narrow_SD.rb]
+#WatchList = rb1710
+#
+#[Strategy.libnarrow_sd_strategy.Narrow_SD.rm]
+#WatchList = RM709
+#
+#[Strategy.libnarrow_sd_scl_strategy.Narrow_SD_SCL.ag_15min_para1_2]
+#WatchList = ag1712
+#
+#[Strategy.libnarrow_sd_scl_strategy.Narrow_SD_SCL.i]
+#WatchList = i1709
+#
+#[Strategy.libnarrow_sd_scl_strategy.Narrow_SD_SCL.j_15min_para2_1]
+#WatchList = j1709
+#
+#[Strategy.libnarrow_sd_scl_strategy.Narrow_SD_SCL.ma]
+#WatchList = MA709
+#
+#[Strategy.libnarrow_sd_scl_strategy.Narrow_SD_SCL.ma_15min_para1_1]
+#WatchList = MA709
+#
+#[Strategy.libnarrow_sd_scl_strategy.Narrow_SD_SCL.ma_15min_para3_1]
+#WatchList = MA709
+#
+#[Strategy.libnarrow_sd_scl_strategy.Narrow_SD_SCL.pp_15min_para4_1]
+#WatchList = pp1709
+#
+#[Strategy.libnarrow_sd_scl_strategy.Narrow_SD_SCL.ru_15min_para4_1]
+#WatchList = ru1709
+#
+#[Strategy.libnarrow_sd_scl_strategy.Narrow_SD_SCL.ru_para1]
+#WatchList = ru1709
+#
+#[Strategy.libnarrow_sd_scl_strategy.Narrow_SD_SCL.ru_para2]
+#WatchList = ru1709
+#
+#[Strategy.libnarrow_sd_scl_strategy.Narrow_SD_SCL.TF_15min_para1]
+#WatchList = TF1709
+#
+#[Strategy.libnarrow_sd_scl_strategy.Narrow_SD_SCL.TF_15min_para2]
+#WatchList = TF1709
+#
+#[Strategy.libnarrow_sd_scl_strategy.Narrow_SD_SCL.T_15min_para1]
+#WatchList = T1709
+#
+#[Strategy.libpairtrading_strategy.PairTrading.j_jm]
+#WatchList = j1709;jm1709
+#
+#[Strategy.libpairtrading_strategy.PairTrading.j_jm_para2]
+#WatchList = j1709;jm1709
+#
+#[Strategy.libpairtrading_strategy.PairTrading.j_jm_para3]
+#WatchList = j1709;jm1709
+#
+#[Strategy.libpairtrading_strategy.PairTrading.j_jm_para4]
+#WatchList = j1709;jm1709
+#
+#[Strategy.libpairtrading_strategy.PairTrading.m_rm_para1]
+#WatchList = m1709;RM709
+#
+#[Strategy.libpairtrading_strategy.PairTrading.m_rm_para2]
+#WatchList = m1709;RM709
+#
+#[Strategy.libpairtrading_strategy.PairTrading.m_rm_para3]
+#WatchList = m1709;RM709
+#
+#[Strategy.libpairtrading_strategy.PairTrading.m_rm_para4]
+#WatchList = m1709;RM709
+#
+#[Strategy.libTrdFlwLRNewEx_strategy.TrdFlwLRNewEx.rb]
+#WatchList = rb1710
+#
+#[Strategy.libTrendFollowLR_strategy.TrendFollowLR.rb]
+#WatchList = rb1710
+

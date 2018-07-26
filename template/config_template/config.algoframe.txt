@@ -1,0 +1,16 @@
+[Global]
+SqlAddress=%s
+SqlUser=%s
+SqlPassword=%s
+SqlPort = 3306
+WatchListName = shsz300 arb;cg etf;cs etf;cg option;cg commonstock;cs commonstock
+Filter = any,any
+AutoLoadRelated = true
+OnlyLoadActive = false
+IsQueryOrder = false
+IsQueryAccount = true
+ControlServerRefreshInterval = 10
+OrderThreadInterval = 0
+AlgoThreadInterval = 0
+StrategyThreadInterval = 0
+IntervalWorkFunCycle = 0

@@ -1,0 +1,8 @@
+target,account_id,pf_account_id,pre_prc,so_name,dynamic_load_module,instance_name,strategy_name,long,short,param_set,test_case_no
+RB,7,3,100,libCCI_strategy.so,CCI_strategy,rb_1min_para1,CCI_strategy,100,100,0,cta0001
+IF,7,3,100,libCCI_strategy.so,CCI_strategy,rb_1min_para1,CCI_strategy,100,100,0,cta0002
+IC,7,3,100,libCCI_strategy.so,CCI_strategy,rb_1min_para1,CCI_strategy,100,100,0,cta0003
+SR,7,3,100,libCCI_strategy.so,CCI_strategy,rb_1min_para1,CCI_strategy,100,100,0,cta0004
+SN,7,3,100,libCCI_strategy.so,CCI_strategy,rb_1min_para1,CCI_strategy,100,100,0,cta0005
+RM,7,3,100,libCCI_strategy.so,CCI_strategy,rb_1min_para1,CCI_strategy,100,100,0,cta0006
+SF,7,3,100,libCCI_strategy.so,CCI_strategy,rb_1min_para1,CCI_strategy,100,100,0,cta0007

@@ -1,0 +1,26 @@
+[Global]
+SqlAddress=%s
+SqlUser=%s
+SqlPassword=%s
+SqlPort = 3306
+WatchListName = shsz300 arb;cg etf;cs etf;cg option;cg commonstock;cs commonstock
+#WatchListName = cff future;zce future
+Filter = any,any
+AutoLoadRelated = true
+OnlyLoadActive = false
+IsQueryOrder = false
+IsQueryAccount = true
+ControlServerRefreshInterval = 10
+OrderThreadInterval = 0
+AlgoThreadInterval = 0
+StrategyThreadInterval = 0
+
+[DataSource.CSV]
+IsEnable = true
+Filter = any,any
+Instruments=%s
+FilePath = /home/trader/apps/TradePlat/quote
+StartTime=%s 09:30:00
+EndTime=%s 15:00:00
+Speed = 1
+DataType = Quote

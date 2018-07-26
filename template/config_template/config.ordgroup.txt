@@ -1,0 +1,28 @@
+[Global]
+SqlAddress = 172.16.12.88
+SqlUser = root
+SqlPassword = asdasd123
+SqlPort = 3306
+WatchListName = nanhua_instrument_all
+Filter = any,any
+AutoLoadRelated = true
+OnlyLoadActive = false
+IsQueryOrder = false
+IsQueryAccount = false
+ControlServerRefreshInterval = 10
+OrderThreadInterval = 0
+AlgoThreadInterval = 0
+StrategyThreadInterval = 0
+
+
+[OrderRoute.GROUP]
+IsEnable = true
+SqlAddress = 172.16.12.88
+SqlUser = root
+SqlPassword = asdasd123
+SqlPort = 3306
+Accounts = *
+Filter = any,any
+
+
+

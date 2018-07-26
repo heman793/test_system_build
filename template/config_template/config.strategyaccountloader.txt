@@ -1,0 +1,27 @@
+[Global]
+SqlAddress = 172.16.12.88
+SqlUser = root
+SqlPassword = asdasd123
+WatchListName = instrument_all
+Filter = any,any
+AutoLoadRelated = true
+OnlyLoadActive = true
+ControlPort = 17011
+
+IsLoadStrategyPositionFromDB = true
+
+IsQueryOrder = false
+IsQueryAccount = false
+
+ControlServerRefreshInterval = 10
+
+Production = true
+
+
+[StrategyAccountLoader]
+StrategyList = MultiFactor
+
+[MultiFactor]
+InstanceList = Long_IndNorm_01;Long_IndNorm_02;Long_IndNorm_03;Long_IndNorm_04;Long_IndNorm_05;Long_IndNorm_06;Long_IndNorm_07;Long_IndNorm_08;Long_IndNorm_09;Long_IndNorm_10;Long_MV10Norm_01;Long_MV10Norm_02;Long_MV10Norm_03;Long_MV10Norm_04;Long_MV10Norm_05;Long_MV10Norm_06;Long_MV10Norm_07;Long_MV10Norm_08;Long_MV10Norm_09;Long_MV10Norm_10;Long_Norm_01;Long_Norm_02;Long_Norm_03;Long_Norm_04;Long_Norm_05;Long_Norm_06;Long_Norm_07;Long_Norm_08;Long_Norm_09;Long_Norm_10;Long_MV5Norm_01;Long_MV5Norm_02;Long_MV5Norm_03;Long_MV5Norm_04;Long_MV5Norm_05;Long_MV5Norm_06;Long_MV5Norm_07;Long_MV5Norm_08;Long_MV5Norm_09;Long_MV5Norm_10;ZZ500_Norm_01;ZZ500_Norm_02;ZZ500_Norm_03;ZZ500_Norm_04;ZZ500_Norm_05;CSI300_MV10Norm_01;CSI300_MV10Norm_02;CSI300_MV10Norm_03;CSI300_MV10Norm_04;CSI300_MV10Norm_05;YSPool2_Norm_01;YSPool2_Norm_02;YSPool2_Norm_03;YSPool2_Norm_04;YSPool2_Norm_05
+
+
