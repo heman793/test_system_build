@@ -1,0 +1,19 @@
+[Global]
+SqlAddress=%s
+SqlUser=%s
+SqlPassword=%s
+SqlPort = 3306
+WatchListName = shsz300 arb;cg etf;cs etf;cs mmf;cg mmf;cg commonstock;cs commonstock;cg structured fund
+Filter = any,any
+AutoLoadRelated = true
+OnlyLoadActive = true
+ControlPort = 17103
+
+IsLoadStrategyPositionFromDB = false
+
+IsQueryOrder = false
+IsQueryAccount = false
+
+ControlServerRefreshInterval = 10
+
+StrategyThreadInterval = 0

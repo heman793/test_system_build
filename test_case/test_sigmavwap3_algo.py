@@ -7,6 +7,7 @@ from message.order_details import *
 from message.socket_init import socket_init
 from random import randint
 import time
+import pytest
 
 class TestSigmaVWAP3Algo(unittest.TestCase,  New_Order_Msg):
     def setUp(self):
@@ -57,12 +58,13 @@ class TestSigmaVWAP3Algo(unittest.TestCase,  New_Order_Msg):
         print 'expect result is: %s, actual result is: %s' % (expect, actual)
         self.assertEqual(expect, actual)
 
-
+    @pytest.mark.AlgoOrder
     def test_sigma_algo_stock_buy(self):
         clientid = 'sigma30001'
         self.send_order_msg(clientid)
         self.genaral_test_xxx_testcase(clientid)
 
+    @pytest.mark.AlgoOrder
     def test_sigma_algo_stock_sell(self):
         clientid = 'sigma30002'
         self.send_order_msg(clientid)

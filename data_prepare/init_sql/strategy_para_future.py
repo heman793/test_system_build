@@ -55,9 +55,10 @@ class Strategy_para(ConfigCommon):
     def clear_db_strategy(self, date):
         sql_list = []
         # print "hello"
-        delete_sql = "delete from %s where TIME < '%s'"
+        delete_sql = "delete from %s where TIME < '%s' and NAME='%s'"
         delete_table_list = ['strategy_parameter', 'strategy_state']
-        map(lambda table: sql_list.append(delete_sql % (table, date)), delete_table_list)
+        map(lambda table: sql_list.append(delete_sql % (table, date, strategy_name_var)),
+            delete_table_list)
         self.execute_db_sql(db='strategy', sql_list=sql_list)
         # print sql_list
 

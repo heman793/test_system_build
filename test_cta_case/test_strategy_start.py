@@ -6,7 +6,7 @@ import time
 from message.strategy_para_change_response_msg import *
 from tools.log_check import check_strategy_start_log
 from message.strategy_info_request_msg import *
-import types
+import pytest
 
 class TestCtaStrategy(unittest.TestCase):
     def setUp(self):
@@ -32,8 +32,10 @@ class TestCtaStrategy(unittest.TestCase):
         return True
 
     def get_actual_result(self, test_case_no):
+        test_type = 'future'
+        app_name = 'StrategyLoader'
         strategy_name = self.get_strategy_name(test_case_no)
-        strategy_status_dict = query_strategy_status()
+        strategy_status_dict = query_strategy_status(test_type, app_name)
         for key, value in strategy_status_dict.items():
             if strategy_name == key:
                 return value
@@ -47,62 +49,73 @@ class TestCtaStrategy(unittest.TestCase):
         print 'expect result is: %s, actual result is: %s' % (expect, actual)
         self.assertEqual(actual, expect)
 
-
+    @pytest.mark.BBreaker
     def test_BBreaker_strategy_start(self):
         test_case_no = 'cta0001'
         self.start_strategy(test_case_no)
         self.genaral_test_xxx_testcase(test_case_no)
 
+    @pytest.mark.BollingerBandReversion
     def test_BollingerBandReversion_strategy_start(self):
         test_case_no = 'cta0002'
         self.start_strategy(test_case_no)
         self.genaral_test_xxx_testcase(test_case_no)
 
+    @pytest.mark.BreakBandDync
     def test_BreakBandDync_strategy_start(self):
         test_case_no = 'cta0003'
         self.start_strategy(test_case_no)
         self.genaral_test_xxx_testcase(test_case_no)
 
+    @pytest.mark.CCIMktRecg
     def test_CCIMktRecg_strategy_start(self):
         test_case_no = 'cta0004'
         self.start_strategy(test_case_no)
         self.genaral_test_xxx_testcase(test_case_no)
 
+    @pytest.mark.CCIOsc
     def test_CCIOsc_strategy_start(self):
         test_case_no = 'cta0005'
         self.start_strategy(test_case_no)
         self.genaral_test_xxx_testcase(test_case_no)
 
+    @pytest.mark.CCIRvs
     def test_CCIRvs_strategy_start(self):
         test_case_no = 'cta0006'
         self.start_strategy(test_case_no)
         self.genaral_test_xxx_testcase(test_case_no)
 
+    @pytest.mark.Donchian
     def test_Donchian_strategy_start(self):
         test_case_no = 'cta0007'
         self.start_strategy(test_case_no)
         self.genaral_test_xxx_testcase(test_case_no)
 
+    @pytest.mark.FollowTrendDync
     def test_FollowTrendDync_strategy_start(self):
         test_case_no = 'cta0008'
         self.start_strategy(test_case_no)
         self.genaral_test_xxx_testcase(test_case_no)
 
+    @pytest.mark.Hans
     def test_Hans_strategy_start(self):
         test_case_no = 'cta0009'
         self.start_strategy(test_case_no)
         self.genaral_test_xxx_testcase(test_case_no)
 
+    @pytest.mark.HighLowBandADX
     def test_HighLowBandADX_strategy_start(self):
         test_case_no = 'cta0010'
         self.start_strategy(test_case_no)
         self.genaral_test_xxx_testcase(test_case_no)
 
+    @pytest.mark.PriceVolRatio
     def test_PriceVolRatio_strategy_start(self):
         test_case_no = 'cta0011'
         self.start_strategy(test_case_no)
         self.genaral_test_xxx_testcase(test_case_no)
 
+    @pytest.mark.VolumeBreakthrough
     def test_VolumeBreakthrough_strategy_start(self):
         test_case_no = 'cta0012'
         self.start_strategy(test_case_no)

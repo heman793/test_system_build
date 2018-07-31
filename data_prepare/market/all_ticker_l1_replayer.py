@@ -5,6 +5,7 @@ from ysdata.future_info import get_platform_name
 from ysdata.data_info import FutureData
 from tools.date_utils import *
 import sys
+from data_prepare.init_sql.strategy_para_all import Strategy_para
 
 class DataPrepare_L1(ConfigCommon):
     def __init__(self):
@@ -80,6 +81,8 @@ class DataPrepare_L1(ConfigCommon):
                 ticker_list = list(set(ticker_list))
 
                 dict_['Instruments'] = ','.join(ticker_list)
+            # elif component == 'indexarb':
+            #     component == 'indexarbstrategy'
             elif component == 'mktcsv':
                 df = self.get_strategy_loader_df(test_type='future')
                 ticker_list = [x for x in df['target'].values]
@@ -96,13 +99,15 @@ class DataPrepare_L1(ConfigCommon):
 
             elif component == 'mainframe':
                 dict_['ControlPort'] = str(control_port)
-
             elif component == 'mktdtcenter':
                 if test_type == 'stock':
                     dict_['ConfigPath'] = './config_mktcenter.ini'
+                    dict_['ReceiveFrom'] = 'mg1'
+                    dict_['ReceiveFromExt'] = 'rp1'
                 else:
                     dict_['ConfigPath'] = './config_mktcenter_all.ini'
-
+                    dict_['ReceiveFrom'] = 'rp1'
+                    dict_['ReceiveFromExt'] = ''
             elif component in [ 'mktudpsvr', 'ordudp', 'strategyloader']:
                 pass
 
@@ -127,6 +132,8 @@ class DataPrepare_L1(ConfigCommon):
         data_dat_list = [secur_dat]
         self.write_all_data_ini_process(data_dat_list)
 
+        # insert atp strategy parameters
+        Strategy_para().start_init_process()
 
 if __name__ == "__main__":
     # date = '20180713'

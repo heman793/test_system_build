@@ -58,6 +58,7 @@ test_log_path = os.path.join(project_path, 'log')
 test_data_path = os.path.join(project_path, 'data')
 future_quote_data_path = os.path.join(platform_path, 'quote')
 future_strategy_para_path = os.path.join(version_path, 'future_Config')
+atp_strategy_para_path = os.path.join(version_path, 'all_Config')
 strategyloader_file_path = '/home/trader/apps/TradePlat/cfg'
 # DataBase Setting
 fund_name = 'steady_return'

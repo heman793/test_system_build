@@ -7,6 +7,7 @@ from message.order_details import *
 # from message.socket_init import socket_init
 import time
 from random import randint
+import pytest
 
 class TestPegAlgo(unittest.TestCase,  New_Order_Msg):
     def setUp(self):
@@ -57,25 +58,28 @@ class TestPegAlgo(unittest.TestCase,  New_Order_Msg):
         print 'expect result is: %s, actual result is: %s' % (expect, actual)
         self.assertEqual(expect, actual)
 
-
+    @pytest.mark.AlgoOrder
     def test_peg_algo_stock_buy(self):
         clientid = 'peg0001'
         account_type = stock_account
         self.send_order_msg(clientid, account_type)
         self.genaral_test_xxx_testcase(clientid,account_type)
 
+    @pytest.mark.AlgoOrder
     def test_peg_algo_stock_sell(self):
         clientid = 'peg0002'
         account_type = stock_account
         self.send_order_msg(clientid, account_type)
         self.genaral_test_xxx_testcase(clientid, account_type)
 
+    @pytest.mark.AlgoOrder
     def test_peg_algo_future_buy(self):
         clientid = 'peg0003'
         account_type = future_account
         self.send_order_msg(clientid, account_type)
         self.genaral_test_xxx_testcase(clientid,account_type)
 
+    @pytest.mark.AlgoOrder
     def test_peg_algo_future_sell(self):
         clientid = 'peg0004'
         account_type = future_account

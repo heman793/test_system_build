@@ -8,6 +8,7 @@ from message.order_details import *
 import time
 from random import randint
 import zmq
+import pytest
 
 class TestPartialFilled(unittest.TestCase,  New_Order_Msg):
     def setUp(self):
@@ -63,62 +64,73 @@ class TestPartialFilled(unittest.TestCase,  New_Order_Msg):
         print 'expect result is: %s, actual result is: %s' % (expect, actual)
         self.assertEqual(actual, expect)
 
-
+    @pytest.mark.ManualOrder
     def test_partial_filled_future_buy_open(self):
         clientid = 'ts0013'
         self.send_order_msg(clientid)
         self.genaral_test_xxx_testcase(clientid)
 
+    @pytest.mark.ManualOrder
     def test_partial_filled_future_sell_close(self):
         clientid = 'ts0014'
         self.send_order_msg(clientid)
         self.genaral_test_xxx_testcase(clientid)
 
+    @pytest.mark.ManualOrder
     def test_partial_filled_future_sell_open(self):
         clientid = 'ts0015'
         self.send_order_msg(clientid)
         self.genaral_test_xxx_testcase(clientid)
 
+    @pytest.mark.ManualOrder
     def test_partial_filled_future_buy_close(self):
         clientid = 'ts0016'
         self.send_order_msg(clientid)
         self.genaral_test_xxx_testcase(clientid)
 
+    @pytest.mark.ManualOrder
     def test_partial_filled_stock_buy_normal(self):
         clientid = 'ts0017'
         self.send_order_msg(clientid)
         self.genaral_test_xxx_testcase(clientid)
 
+    @pytest.mark.ManualOrder
     def test_partial_filled_stock_sell_normal(self):
         clientid = 'ts0018'
         self.send_order_msg(clientid)
         self.genaral_test_xxx_testcase(clientid)
 
+    @pytest.mark.ManualOrder
     def test_partial_filled_etf_buy_normal(self):
         clientid = 'ts0019'
         self.send_order_msg(clientid)
         self.genaral_test_xxx_testcase(clientid)
 
+    @pytest.mark.ManualOrder
     def test_partial_filled_etf_sell_normal(self):
         clientid = 'ts0020'
         self.send_order_msg(clientid)
         self.genaral_test_xxx_testcase(clientid)
 
+    @pytest.mark.ManualOrder
     def test_partial_filled_mmf_buy_normal(self):
         clientid = 'ts0021'
         self.send_order_msg(clientid)
         self.genaral_test_xxx_testcase(clientid)
 
+    @pytest.mark.ManualOrder
     def test_partial_filled_mmf_sell_normal(self):
         clientid = 'ts0022'
         self.send_order_msg(clientid)
         self.genaral_test_xxx_testcase(clientid)
 
+    @pytest.mark.ManualOrder
     def test_partial_filled_sf_buy_normal(self):
         clientid = 'ts0023'
         self.send_order_msg(clientid)
         self.genaral_test_xxx_testcase(clientid)
 
+    @pytest.mark.ManualOrder
     def test_partial_filled_sf_sell_normal(self):
         clientid = 'ts0024'
         self.send_order_msg(clientid)

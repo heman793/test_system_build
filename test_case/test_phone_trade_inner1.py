@@ -7,6 +7,7 @@ from message.order_details import *
 from message.socket_init import socket_init
 import time
 from random import randint
+import pytest
 
 IOType = 'inner1'
 class TestPhoneTrade(unittest.TestCase, PhoneTrade):
@@ -58,43 +59,52 @@ class TestPhoneTrade(unittest.TestCase, PhoneTrade):
         print 'expect result is: %s, actual result is: %s' % (expect, actual)
         self.assertEqual(actual, expect)
 
+    @pytest.mark.PhoneTrade
     def test_inner1_stock_buy_normal(self):
         clientid = 'pt1'
         self.genaral_test_xxx_testcase(IOType, clientid)
 
+    @pytest.mark.PhoneTrade
     def test_inner1_stock_sell_normal(self):
         clientid = 'pt2'
         self.genaral_test_xxx_testcase(IOType, clientid)
 
+    @pytest.mark.PhoneTrade
     def test_inner1_future_buy_open(self):
         clientid = 'pt3'
         self.genaral_test_xxx_testcase(IOType, clientid)
 
+    @pytest.mark.PhoneTrade
     def test_inner1_future_sell_close(self):
         clientid = 'pt4'
         self.genaral_test_xxx_testcase(IOType, clientid)
 
+    @pytest.mark.PhoneTrade
     def test_inner1_future_sell_open(self):
         clientid = 'pt5'
         self.genaral_test_xxx_testcase(IOType, clientid)
 
+    @pytest.mark.PhoneTrade
     def test_inner1_future_buy_close(self):
         clientid = 'pt6'
         self.genaral_test_xxx_testcase(IOType, clientid)
 
-
+    @pytest.mark.PhoneTrade
     def test_inner1_option_buy_open(self):
         clientid = 'pt7'
         self.genaral_test_xxx_testcase(IOType, clientid)
-    #
+
+    @pytest.mark.PhoneTrade
     def test_inner1_option_sell_close(self):
         clientid = 'pt8'
         self.genaral_test_xxx_testcase(IOType, clientid)
 
+    @pytest.mark.PhoneTrade
     def test_inner1_option_sell_open(self):
         clientid = 'pt9'
         self.genaral_test_xxx_testcase(IOType, clientid)
 
+    @pytest.mark.PhoneTrade
     def test_inner1_option_buy_close(self):
         clientid = 'pt10'
         self.genaral_test_xxx_testcase(IOType, clientid)

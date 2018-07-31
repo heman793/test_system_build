@@ -6,6 +6,7 @@ import pandas as pd
 from message.order_details import *
 from random import randint
 import time
+import pytest
 
 IOType = 'outer'
 class TestPhoneTrade(unittest.TestCase, PhoneTrade):
@@ -51,43 +52,52 @@ class TestPhoneTrade(unittest.TestCase, PhoneTrade):
         print 'expect result is: %s, actual result is: %s' % (expect, actual)
         self.assertEqual(actual, expect)
 
+    @pytest.mark.PhoneTrade
     def test_outer_stock_buy_normal(self):
         clientid = 'pto10'
         self.genaral_test_xxx_testcase(IOType, clientid)
 
+    @pytest.mark.PhoneTrade
     def test_outer_stock_sell_normal(self):
         clientid = 'pto20'
         self.genaral_test_xxx_testcase(IOType, clientid)
 
+    @pytest.mark.PhoneTrade
     def test_outer_future_buy_open(self):
         clientid = 'pto30'
         self.genaral_test_xxx_testcase(IOType, clientid)
 
+    @pytest.mark.PhoneTrade
     def test_outer_future_sell_close(self):
         clientid = 'pto40'
         self.genaral_test_xxx_testcase(IOType, clientid)
 
+    @pytest.mark.PhoneTrade
     def test_outer_future_sell_open(self):
         clientid = 'pto50'
         self.genaral_test_xxx_testcase(IOType, clientid)
 
+    @pytest.mark.PhoneTrade
     def test_outer_future_buy_close(self):
         clientid = 'pto60'
         self.genaral_test_xxx_testcase(IOType, clientid)
 
-
+    @pytest.mark.PhoneTrade
     def test_outer_option_buy_open(self):
         clientid = 'pto70'
         self.genaral_test_xxx_testcase(IOType, clientid)
-    #
+
+    @pytest.mark.PhoneTrade
     def test_outer_option_sell_close(self):
         clientid = 'pto80'
         self.genaral_test_xxx_testcase(IOType, clientid)
 
+    @pytest.mark.PhoneTrade
     def test_outer_option_sell_open(self):
         clientid = 'pto90'
         self.genaral_test_xxx_testcase(IOType, clientid)
 
+    @pytest.mark.PhoneTrade
     def test_outer_option_buy_close(self):
         clientid = 'pto100'
         self.genaral_test_xxx_testcase(IOType, clientid)

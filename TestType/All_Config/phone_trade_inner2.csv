@@ -1,8 +1,8 @@
 fund,strategy1,symbol,direction,trade_type,hedge_flag,ex_price,ex_qty,io_type,strategy2,connect_address,clientid,expect_result
 steady_return,Covered_Call.SSE50,000001,1,0,0,11.76,300,1,default.manual,172.16.12.88:17103,pt10,True
 steady_return,Covered_Call.SSE50,600000,-1,0,0,12.02,300,1,default.manual,172.16.12.88:17103,pt20,True
-steady_return,Covered_Call.SSE50,IF1807,1,2,0,2.72,8,1,default.manual,172.16.12.88:17103,pt30,True
-steady_return,Covered_Call.SSE50,IH1807,-1,3,0,11.76,6,1,default.manual,172.16.12.88:17103,pt40,True
+steady_return,Covered_Call.SSE50,IF1808,1,2,0,2.72,8,1,default.manual,172.16.12.88:17103,pt30,True
+steady_return,Covered_Call.SSE50,IH1808,-1,3,0,11.76,6,1,default.manual,172.16.12.88:17103,pt40,True
 steady_return,Covered_Call.SSE50,SR811,-1,2,0,12.02,4,1,default.manual,172.16.12.88:17103,pt50,True
 steady_return,Covered_Call.SSE50,m1811,1,3,0,2.72,2,1,default.manual,172.16.12.88:17103,pt60,True
 steady_return,Covered_Call.SSE50,10001352,1,2,0,11.76,7,1,default.manual,172.16.12.88:17103,pt70,True

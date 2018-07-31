@@ -12,7 +12,7 @@ import types
 import json
 import re
 
-def __strategy_info_request_msg():
+def __strategy_info_request_msg(test_type, app_name):
     context = zmq.Context().instance()
     socket = context.socket(zmq.DEALER)
     socket.setsockopt(zmq.IDENTITY, bytes(randint(10000000, 999999999)))
@@ -32,12 +32,13 @@ def __strategy_info_request_msg():
 
     # 接收应答消息
     filename = 'AutoTestOrder.csv'
-    df = pd.read_csv(os.path.join(future_strategy_para_path, filename),
+    filepath = os.path.join(version_path, '%s_Config') % test_type
+    df = pd.read_csv(os.path.join(filepath, filename),
                      index_col='order')
-    num = len(df)
+    for ind in df.index.values:
+        if df.at[ind, 'app_name'] == app_name:
+            num = ind
 
-    # this message will receive several response, according to the process
-    # StrategyLoad is the last order process
     for response in range(1, num+1):
         recv_message = socket.recv_multipart()
         strategy_info_response_msg = AllProtoMsg_pb2.StrategyInfoResponseMsg()
@@ -48,45 +49,45 @@ def __strategy_info_request_msg():
     socket.close()
     context.term()
 
-def query_strategy_status():
+def query_strategy_status(test_type, app_name):
     strategy_status_dict = dict()
-    strategy_info_response_msg = __strategy_info_request_msg()
+    strategy_info_response_msg = __strategy_info_request_msg(test_type, app_name)
     # print strategy_info_response_msg
     for strats_info in strategy_info_response_msg.Strats:
         strategy_status_dict['%s' % strats_info.Name] = strats_info.IsEnabled
     # print strategy_status_dict['BBreaker.rb_1min_para1']
     return strategy_status_dict
 
-def query_strategy_parameters():
+def query_strategy_parameters(test_type, app_name):
     strategy_parameter_dict = dict()
-    strategy_info_response_msg = __strategy_info_request_msg()
+    strategy_info_response_msg = __strategy_info_request_msg(test_type, app_name)
     # print strategy_info_response_msg
     for strats_info in strategy_info_response_msg.Strats:
         strategy_parameter_dict['%s' % strats_info.Name] = strats_info.Parameter
     # print strategy_parameter_dict['BBreaker.rb_1min_para1']
     return strategy_parameter_dict
 
-def query_strategy_variables():
+def query_strategy_variables(test_type, app_name):
     strategy_variable_dict = dict()
-    strategy_info_response_msg = __strategy_info_request_msg()
+    strategy_info_response_msg = __strategy_info_request_msg(test_type, app_name)
     # print strategy_info_response_msg
     for strats_info in strategy_info_response_msg.Strats:
         strategy_variable_dict['%s' % strats_info.Name] = strats_info.Variable
     # print strategy_variable_dict
     return strategy_variable_dict
 
-def query_strategy_states():
+def query_strategy_states(test_type, app_name):
     strategy_state_dict = dict()
-    strategy_info_response_msg = __strategy_info_request_msg()
+    strategy_info_response_msg = __strategy_info_request_msg(test_type, app_name)
     # print strategy_info_response_msg
     for strats_info in strategy_info_response_msg.Strats:
         strategy_state_dict['%s' % strats_info.Name] = strats_info.State
     # print type(strategy_state_dict)
     return strategy_state_dict
 
-def query_strategy_static_info():
+def query_strategy_static_info(test_type, app_name):
     strategy_static_info_dict = dict()
-    strategy_info_response_msg = __strategy_info_request_msg()
+    strategy_info_response_msg = __strategy_info_request_msg(test_type, app_name)
     # print strategy_info_response_msg
     for strats_info in strategy_info_response_msg.Strats:
         strategy_static_info_dict['%s' % strats_info.Name] = strats_info.StaticInfo
@@ -107,8 +108,10 @@ def get_dict_value(dict, objkey, default=None):
 
 if __name__ == '__main__':
     # strategy_name = 'HighLowBandADX.cu_15min_para1'
-    # __strategy_info_request_msg()
     __strategy_info_request_msg()
+    # test_type = 'all'
+    # app_name = 'CalendarMA'
+    # __strategy_info_request_msg(test_type, app_name)
     # strategy_parameter_dict = query_strategy_parameters()
     # ret = get_dict_value(strategy_parameter_dict, 'HighLowBandADX.cu_15min_para1',
     #                      default=None )

@@ -72,15 +72,20 @@ class AutoTestUnit(object):
         content = ''
         component_file_list = self.get_component_file_list(app_name)
         if len(component_file_list) > 0:
-            read_log_cmd = 'tail -10 %s' % os.path.join(platform_log_path, component_file_list[-1])
+            read_log_cmd = 'tail -10 %s' % os.path.join(platform_log_path,
+                                                         component_file_list[-1])
             content = self.get_terminal_content(read_log_cmd)
 
-        while 'TradingFramework start command loop now.' not in content and component != 'mktdtcenter':
+        while 'TradingFramework start command loop now.' not in content:
             time.sleep(5)
             component_file_list = self.get_component_file_list(app_name)
             if len(component_file_list) > 0:
-                read_log_cmd = 'tail -10 %s' % os.path.join(platform_log_path, component_file_list[-1])
+                read_log_cmd = 'tail -10 %s' % os.path.join(
+                    platform_log_path, component_file_list[-1])
                 content = self.get_terminal_content(read_log_cmd)
+            else:
+                print "please check the component status :%s" % app_name
+                return
 
     @staticmethod
     def start_windows_trade_monitor():
@@ -150,7 +155,7 @@ class AutoTestUnit(object):
 
 if __name__ == '__main__':
         # date = '20180713'
-        # test_type = 'future'
+        # test_type = 'stock'
         db_unit = DataBaseUnit()
         db_prepare = DataPrepare_L1()
         start_run = AutoTestUnit()

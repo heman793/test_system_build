@@ -14,21 +14,11 @@ OrderThreadInterval = 0
 AlgoThreadInterval = 0
 StrategyThreadInterval = 0
 
-##### if use stkintraday mode ###### 
 [DataSource.MKTDT]
 IsEnable = true
 ConfigPath=%s
 TickersOnlyRecvExtQuote =
 Production = true
-ReceiveFrom = rp1
-ReceiveFromExt =
+ReceiveFrom=%s
+ReceiveFromExt=%s
 Filter = any,any
-
-###### if use replay all ticker mode like stock future option  ######
-#[DataSource.MKTDT]
-#IsEnable = true
-#ConfigPath = ./config_mktcenter_all.ini
-#Production = true
-#ReceiveFrom = rp1
-#ReceiveFromExt = 
-#Filter = any,any

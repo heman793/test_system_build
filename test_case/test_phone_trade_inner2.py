@@ -6,6 +6,7 @@ import pandas as pd
 from message.order_details import *
 from random import randint
 import time
+import pytest
 
 IOType = 'inner2'
 class TestPhoneTrade(unittest.TestCase, PhoneTrade):
@@ -57,48 +58,55 @@ class TestPhoneTrade(unittest.TestCase, PhoneTrade):
         print 'expect result is: %s, actual result is: %s' % (expect, actual)
         self.assertEqual(actual, expect)
 
+    @pytest.mark.PhoneTrade
     def test_inner2_stock_buy_normal(self):
         clientid = 'pt10'
         self.genaral_test_xxx_testcase(IOType, clientid)
 
+    @pytest.mark.PhoneTrade
     def test_inner2_stock_sell_normal(self):
         clientid = 'pt20'
         self.genaral_test_xxx_testcase(IOType, clientid)
 
+    @pytest.mark.PhoneTrade
     def test_inner2_future_buy_open(self):
         clientid = 'pt30'
         self.genaral_test_xxx_testcase(IOType, clientid)
 
+    @pytest.mark.PhoneTrade
     def test_inner2_future_sell_close(self):
         clientid = 'pt40'
         self.genaral_test_xxx_testcase(IOType, clientid)
 
+    @pytest.mark.PhoneTrade
     def test_inner2_future_sell_open(self):
         clientid = 'pt50'
         self.genaral_test_xxx_testcase(IOType, clientid)
 
+    @pytest.mark.PhoneTrade
     def test_inner2_future_buy_close(self):
         clientid = 'pt60'
         self.genaral_test_xxx_testcase(IOType, clientid)
 
-
+    @pytest.mark.PhoneTrade
     def test_inner2_option_buy_open(self):
         clientid = 'pt70'
         self.genaral_test_xxx_testcase(IOType, clientid)
-    #
+
+    @pytest.mark.PhoneTrade
     def test_inner2_option_sell_close(self):
         clientid = 'pt80'
         self.genaral_test_xxx_testcase(IOType, clientid)
 
+    @pytest.mark.PhoneTrade
     def test_inner2_option_sell_open(self):
         clientid = 'pt90'
         self.genaral_test_xxx_testcase(IOType, clientid)
 
+    @pytest.mark.PhoneTrade
     def test_inner2_option_buy_close(self):
         clientid = 'pt100'
         self.genaral_test_xxx_testcase(IOType, clientid)
-
-
 
     def tearDown(self):
         self.socket.close()

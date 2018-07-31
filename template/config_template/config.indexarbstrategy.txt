@@ -1,7 +1,7 @@
 [Global]
-SqlAddress = 172.16.12.88
-SqlUser = root
-SqlPassword = asdasd123
+SqlAddress=%s
+SqlUser=%s
+SqlPassword=%s
 WatchListName = shsz300 arb;cg etf;cs etf;cs mmf;cg mmf;cg commonstock;cs commonstock;cg structured fund
 #WatchListName = cg option
 Filter = any,any

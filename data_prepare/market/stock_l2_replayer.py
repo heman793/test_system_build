@@ -62,12 +62,21 @@ class DataPrepare_L2(ConfigCommon):
         hh_alpha_ini = self.write_config_ini_from_template('config_mktcenter.ini', dict_)
         return pre_capture_ini, build_ini, hh_alpha_ini
 
+    # @staticmethod
+    # def run_ini_create_program(ini_file):
+    #     os.chdir(platform_path)
+    #     component_log_path = os.path.join(test_log_path, component_log_name)
+    #     cmd1 = 'echo `pwd`, export LD_LIBRARY_PATH=/home/trader/apps/TradePlat'
+    #     os.system(cmd1)
+    #     cmd = './%s -uc=false --cfg=%s > %s 2>&1' % \
+    #           ('build64_release/libatp.mktdt/MktdtSvr', ini_file, component_log_path)
+    #     platform_logger.info(cmd)
+    #     os.system(cmd)
+
     @staticmethod
-    def run_ini_create_program(ini_file):
+    def run_ini_create_program(type):
         os.chdir(platform_path)
-        component_log_path = os.path.join(test_log_path, component_log_name)
-        cmd = './%s -uc=false --cfg=%s > %s 2>&1' % \
-              ('build64_release/libatp.mktdt/MktdtSvr', ini_file, component_log_path)
+        cmd = './script/start.mkt_%s.sh' % type
         platform_logger.info(cmd)
         os.system(cmd)
 
@@ -205,8 +214,12 @@ class DataPrepare_L2(ConfigCommon):
             elif component == 'mktdtcenter':
                 if test_type == 'stock':
                     dict_['ConfigPath'] = './config_mktcenter.ini'
+                    dict_['ReceiveFrom'] = 'mg1'
+                    dict_['ReceiveFromExt'] = 'rp1'
                 else:
                     dict_['ConfigPath'] = './config_mktcenter_all.ini'
+                    dict_['ReceiveFrom'] = 'rp1'
+                    dict_['ReceiveFromExt'] = ''
             elif component in ['mktcsv', 'mktudpsvr', 'ordudp',
                                'strategyloader']:
                 pass
@@ -247,15 +260,15 @@ class DataPrepare_L2(ConfigCommon):
         pre_capture_ini, build_ini, hh_alpha_ini = self.write_all_data_ini_process(data_dat_list, ticker_list,
                                                                                    high_low_limited_file)
         # start pre_capture, rebuild, replay_data
-        self.run_ini_create_program(pre_capture_ini)
-        self.run_ini_create_program(build_ini)
+        self.run_ini_create_program(type='pre_capture')
+        self.run_ini_create_program(type='rebuild')
         map(lambda file_path: file_logger.info(file_path), data_dat_list)
 
         # insert strategy_parameters
         Strategy_para().start_init_process(test_type='stock')
 
 if __name__ == '__main__':
-    # day = '20180713'
+    day = '20180713'
     data_prepare = DataPrepare_L2()
     # data_prepare.start_stock_data_preparation(day, {'mktdtcenter',
     #                                                 'strategyloader',

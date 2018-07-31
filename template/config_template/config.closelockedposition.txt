@@ -1,0 +1,21 @@
+[Global]
+SqlAddress=%s
+SqlUser=%s
+SqlPassword=%s
+WatchListName = instrument_all
+Filter = any,any
+AutoLoadRelated = true
+OnlyLoadActive = true
+ControlPort = 17015
+
+IsLoadStrategyPositionFromDB = true
+
+IsQueryOrder = false
+IsQueryAccount = false
+
+ControlServerRefreshInterval = 10
+
+StrategyThreadInterval = 0
+
+[CloseLockedPosition]
+TargetList = rb;cu;m;i;RM;bu;TA;p;MA;ni;SR;pp;ru;ag;T;TF;c;y;l;au;al;CF;jm;cs;OI;a;hc;j;ZC;FG;zn;jd;v

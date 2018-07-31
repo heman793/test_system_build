@@ -5,6 +5,7 @@ from message.new_market_algo_order_msg import New_Order_Msg
 from message.order_details import *
 import time
 from random import randint
+import pytest
 
 class TestMktBasketAlgo(unittest.TestCase,  New_Order_Msg):
     def setUp(self):
@@ -45,17 +46,19 @@ class TestMktBasketAlgo(unittest.TestCase,  New_Order_Msg):
         print 'expect result is: %s, actual result is: %s' % (expect, actual)
         self.assertEqual(expect, actual)
 
-
+    @pytest.mark.AlgoOrder
     def test_mkt_basket_algo_sigma(self):
         clientid = 'mkt0001'
         self.send_order_msg(clientid)
         self.genaral_test_xxx_testcase(clientid)
 
+    @pytest.mark.AlgoOrder
     def test_mkt_basket_algo_sigma3(self):
         clientid = 'mkt0002'
         self.send_order_msg(clientid)
         self.genaral_test_xxx_testcase(clientid)
 
+    @pytest.mark.AlgoOrder
     def test_mkt_basket_algo_smart(self):
         clientid = 'mkt0003'
         self.send_order_msg(clientid)

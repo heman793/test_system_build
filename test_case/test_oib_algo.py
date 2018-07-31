@@ -6,6 +6,7 @@ import pandas as pd
 from message.order_details import *
 from random import randint
 import time
+import pytest
 
 class TestOIBAlgo(unittest.TestCase,  New_Order_Msg):
     def setUp(self):
@@ -56,11 +57,13 @@ class TestOIBAlgo(unittest.TestCase,  New_Order_Msg):
         print 'expect result is: %s, actual result is: %s' % (expect, actual)
         self.assertEqual(expect, actual)
 
+    @pytest.mark.AlgoOrder
     def test_oib_algo_future_buy(self):
         clientid = 'oib0001'
         self.send_order_msg(clientid)
         self.genaral_test_xxx_testcase(clientid)
 
+    @pytest.mark.AlgoOrder
     def test_oib_algo_future_sell(self):
         clientid = 'oib0002'
         self.send_order_msg(clientid)

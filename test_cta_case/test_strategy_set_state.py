@@ -3,6 +3,7 @@
 import unittest
 from message.strategy_para_change_response_with_para import *
 from message.strategy_info_request_msg import *
+import pytest
 
 
 class TestCtaStrategy(unittest.TestCase):
@@ -36,8 +37,10 @@ class TestCtaStrategy(unittest.TestCase):
         return expect_result
 
     def get_actual_result(self, test_case_no):
+        test_type = 'future'
+        app_name = 'StrategyLoader'
         strategy_name = self.get_strategy_name(test_case_no)
-        strategy_state_dict = query_strategy_states()
+        strategy_state_dict = query_strategy_states(test_type, app_name)
         ret = get_dict_value(strategy_state_dict, strategy_name, default=None)
         if ret is not None:
             print ret
@@ -54,62 +57,62 @@ class TestCtaStrategy(unittest.TestCase):
         self.assertEqual(actual, expect)
 
 
-    def test_BBreaker_strategy_set_para(self):
-        test_case_no = 'cta0001'
-        self.start_strategy(test_case_no)
-        self.genaral_test_xxx_testcase(test_case_no)
-
-    def test_BollingerBandReversion_strategy_set_para(self):
-        test_case_no = 'cta0002'
-        self.start_strategy(test_case_no)
-        self.genaral_test_xxx_testcase(test_case_no)
-
-    def test_BreakBandDync_strategy_set_para(self):
-        test_case_no = 'cta0003'
-        self.start_strategy(test_case_no)
-        self.genaral_test_xxx_testcase(test_case_no)
-
-    def test_CCIMktRecg_strategy_set_para(self):
-        test_case_no = 'cta0004'
-        self.start_strategy(test_case_no)
-        self.genaral_test_xxx_testcase(test_case_no)
-
-    def test_CCIOsc_strategy_set_para(self):
-        test_case_no = 'cta0005'
-        self.start_strategy(test_case_no)
-        self.genaral_test_xxx_testcase(test_case_no)
-
-    def test_CCIRvs_strategy_set_para(self):
-        test_case_no = 'cta0006'
-        self.start_strategy(test_case_no)
-        self.genaral_test_xxx_testcase(test_case_no)
-
-    def test_Donchian_strategy_set_para(self):
-        test_case_no = 'cta0007'
-        self.start_strategy(test_case_no)
-        self.genaral_test_xxx_testcase(test_case_no)
-
-    def test_FollowTrendDync_strategy_set_para(self):
-        test_case_no = 'cta0008'
-        self.start_strategy(test_case_no)
-        self.genaral_test_xxx_testcase(test_case_no)
-
-    def test_Hans_strategy_set_para(self):
-        test_case_no = 'cta0009'
-        self.start_strategy(test_case_no)
-        self.genaral_test_xxx_testcase(test_case_no)
-
-    def test_HighLowBandADX_strategy_set_para(self):
-        test_case_no = 'cta0010'
-        self.start_strategy(test_case_no)
-        self.genaral_test_xxx_testcase(test_case_no)
-
-    def test_PriceVolRatio_strategy_set_para(self):
-        test_case_no = 'cta0011'
-        self.start_strategy(test_case_no)
-        self.genaral_test_xxx_testcase(test_case_no)
-
-    def test_VolumeBreakthrough_strategy_set_para(self):
+    # def test_BBreaker_strategy_set_state(self):
+    #     test_case_no = 'cta0001'
+    #     self.start_strategy(test_case_no)
+    #     self.genaral_test_xxx_testcase(test_case_no)
+    #
+    # def test_BollingerBandReversion_strategy_set_state(self):
+    #     test_case_no = 'cta0002'
+    #     self.start_strategy(test_case_no)
+    #     self.genaral_test_xxx_testcase(test_case_no)
+    #
+    # def test_BreakBandDync_strategy_set_state(self):
+    #     test_case_no = 'cta0003'
+    #     self.start_strategy(test_case_no)
+    #     self.genaral_test_xxx_testcase(test_case_no)
+    #
+    # def test_CCIMktRecg_strategy_set_state(self):
+    #     test_case_no = 'cta0004'
+    #     self.start_strategy(test_case_no)
+    #     self.genaral_test_xxx_testcase(test_case_no)
+    #
+    # def test_CCIOsc_strategy_set_state(self):
+    #     test_case_no = 'cta0005'
+    #     self.start_strategy(test_case_no)
+    #     self.genaral_test_xxx_testcase(test_case_no)
+    #
+    # def test_CCIRvs_strategy_set_state(self):
+    #     test_case_no = 'cta0006'
+    #     self.start_strategy(test_case_no)
+    #     self.genaral_test_xxx_testcase(test_case_no)
+    #
+    # def test_Donchian_strategy_set_state(self):
+    #     test_case_no = 'cta0007'
+    #     self.start_strategy(test_case_no)
+    #     self.genaral_test_xxx_testcase(test_case_no)
+    #
+    # def test_FollowTrendDync_strategy_set_state(self):
+    #     test_case_no = 'cta0008'
+    #     self.start_strategy(test_case_no)
+    #     self.genaral_test_xxx_testcase(test_case_no)
+    #
+    # def test_Hans_strategy_set_state(self):
+    #     test_case_no = 'cta0009'
+    #     self.start_strategy(test_case_no)
+    #     self.genaral_test_xxx_testcase(test_case_no)
+    #
+    # def test_HighLowBandADX_strategy_set_state(self):
+    #     test_case_no = 'cta0010'
+    #     self.start_strategy(test_case_no)
+    #     self.genaral_test_xxx_testcase(test_case_no)
+    #
+    # def test_PriceVolRatio_strategy_set_state(self):
+    #     test_case_no = 'cta0011'
+    #     self.start_strategy(test_case_no)
+    #     self.genaral_test_xxx_testcase(test_case_no)
+    @pytest.mark.VolumeBreakthrough
+    def test_VolumeBreakthrough_strategy_set_state(self):
         test_case_no = 'cta0012'
         self.start_strategy(test_case_no)
         self.genaral_test_xxx_testcase(test_case_no)

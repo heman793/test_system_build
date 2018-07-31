@@ -1,3 +1,3 @@
 target,trade_type,type,direction,order_qty,clientid,expect_result
-IF1807,2,2,-1,2,peg0003,True
+IF1808,2,2,-1,2,peg0003,True
 SR809,2,2,1,2,peg0004,True

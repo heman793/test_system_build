@@ -3,3 +3,10 @@ order,app_name,platform
 2,AlgoFrame,Linux
 3,MktDTCenter,Linux
 4,OrdUDP,Linux
+5,CalendarMA,Linux
+6,ETFStrategy,Linux
+7,IndexArbStrategy,Linux
+8,OptionStrategy,Linux
+9,SFStrategy,Linux
+10,CalendarSpread,Linux
+11,CloseLockedPosition,Linux

@@ -7,6 +7,7 @@ from message.order_details import *
 from random import randint
 # from message.socket_init import *
 import time
+import pytest
 
 class TestFullFilled(unittest.TestCase,  New_Order_Msg):
     def setUp(self):
@@ -63,67 +64,77 @@ class TestFullFilled(unittest.TestCase,  New_Order_Msg):
         print 'expect result is: %s, actual result is: %s' % (expect, actual)
         self.assertEqual(actual, expect)
 
-
+    @pytest.mark.ManualOrder
     def test_full_filled_future_buy_open(self):
         clientid = 'ts0001'
         self.send_order_msg(clientid)
         self.genaral_test_xxx_testcase(clientid)
 
+    @pytest.mark.ManualOrder
     def test_full_filled_future_sell_close(self):
         clientid = 'ts0002'
         self.send_order_msg(clientid)
         self.genaral_test_xxx_testcase(clientid)
 
+    @pytest.mark.ManualOrder
     def test_full_filled_future_sell_open(self):
         clientid = 'ts0003'
         self.send_order_msg(clientid)
         self.genaral_test_xxx_testcase(clientid)
 
+    @pytest.mark.ManualOrder
     def test_full_filled_future_buy_close(self):
         clientid = 'ts0004'
         self.send_order_msg(clientid)
         self.genaral_test_xxx_testcase(clientid)
 
+    @pytest.mark.ManualOrder
     def test_full_filled_stock_buy_normal(self):
         clientid = 'ts0005'
         self.send_order_msg(clientid)
         self.genaral_test_xxx_testcase(clientid)
 
+    @pytest.mark.ManualOrder
     def test_full_filled_stock_sell_normal(self):
         clientid = 'ts0006'
         self.send_order_msg(clientid)
         self.genaral_test_xxx_testcase(clientid)
 
+    @pytest.mark.ManualOrder
     def test_full_filled_etf_buy_normal(self):
         clientid = 'ts0007'
         self.send_order_msg(clientid)
         self.genaral_test_xxx_testcase(clientid)
 
+    @pytest.mark.ManualOrder
     def test_full_filled_etf_sell_normal(self):
         clientid = 'ts0008'
         self.send_order_msg(clientid)
         self.genaral_test_xxx_testcase(clientid)
 
+    @pytest.mark.ManualOrder
     def test_full_filled_mmf_buy_normal(self):
         clientid = 'ts0009'
         self.send_order_msg(clientid)
         self.genaral_test_xxx_testcase(clientid)
 
+    @pytest.mark.ManualOrder
     def test_full_filled_mmf_sell_normal(self):
         clientid = 'ts0010'
         self.send_order_msg(clientid)
         self.genaral_test_xxx_testcase(clientid)
 
+    @pytest.mark.ManualOrder
     def test_full_filled_sf_buy_normal(self):
         clientid = 'ts0011'
         self.send_order_msg(clientid)
         self.genaral_test_xxx_testcase(clientid)
 
+    @pytest.mark.ManualOrder
     def test_full_filled_sf_sell_normal(self):
         clientid = 'ts0012'
         self.send_order_msg(clientid)
         self.genaral_test_xxx_testcase(clientid)
-
 
     def tearDown(self):
         self.socket.close()

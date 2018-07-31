@@ -6,6 +6,7 @@ import pandas as pd
 from message.order_details import *
 import time
 from random import randint
+import pytest
 
 class TestSmartVWAPAlgo(unittest.TestCase,  New_Order_Msg):
     def setUp(self):
@@ -56,12 +57,13 @@ class TestSmartVWAPAlgo(unittest.TestCase,  New_Order_Msg):
         print 'expect result is: %s, actual result is: %s' % (expect, actual)
         self.assertEqual(expect, actual)
 
-
+    @pytest.mark.AlgoOrder
     def test_sigma3_algo_stock_buy(self):
         clientid = 'smart0001'
         self.send_order_msg(clientid)
         self.genaral_test_xxx_testcase(clientid)
 
+    @pytest.mark.AlgoOrder
     def test_sigma3_algo_stock_sell(self):
         clientid = 'smart0002'
         self.send_order_msg(clientid)
